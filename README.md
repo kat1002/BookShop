@@ -1,4 +1,4 @@
-# PRJ301-BookShop
+# BookShop
 ## Description
  A project for PRJ301 assignment
 ## Members
