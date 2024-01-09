@@ -58,7 +58,8 @@ CREATE TABLE [books] (
   [translator] nvarchar(255),
   [releaseYear] date,
   [language] nvarchar(255),
-  [coverType] nvarchar(255)
+  [coverType] nvarchar(255),
+  [discount] float
 )
 GO
 
@@ -146,13 +147,6 @@ CREATE TABLE [customer_discounts] (
 )
 GO
 
-CREATE TABLE [book_discounts] (
-  [book_id] integer,
-  [discount_id] integer,
-  PRIMARY KEY ([book_id], [discount_id])
-)
-GO
-
 CREATE TABLE [customerAddress] (
   [user] nvarchar(255),
   [address] integer,
@@ -223,12 +217,6 @@ ALTER TABLE [orderDetails] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
 ALTER TABLE [orderDetails] ADD FOREIGN KEY ([order_id]) REFERENCES [orders] ([id])
-GO
-
-ALTER TABLE [book_discounts] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [book_discounts] ADD FOREIGN KEY ([discount_id]) REFERENCES [discounts] ([id])
 GO
 
 ALTER TABLE [customer_discounts] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([username])
