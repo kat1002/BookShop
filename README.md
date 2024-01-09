@@ -4,7 +4,7 @@
 ## Members
 - Phucnt
 - Thangnd
-- Quan
+- Quanha
 - Datnp
 # Database 
 The database for this project. [Link](Database/database.sql)
