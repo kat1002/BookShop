@@ -48,7 +48,8 @@ WHERE  TABLE_TYPE = 'BASE TABLE'
 Exec Sp_executesql @sql2 
 GO 
 CREATE TABLE [books] (
-  [id] integer PRIMARY KEY,
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
+  [title] nvarchar(255),
   [ageRate] nvarchar(255),
   [inPrice] money,
   [stock] integer,
@@ -58,12 +59,13 @@ CREATE TABLE [books] (
   [translator] nvarchar(255),
   [releaseYear] date,
   [language] nvarchar(255),
-  [coverType] nvarchar(255)
+  [coverType] nvarchar(255),
+  [discount] float
 )
 GO
 
 CREATE TABLE [book_images] (
-  [href] nvarchar PRIMARY KEY,
+  [href] nvarchar(255) PRIMARY KEY,
   [book_id] integer
 )
 GO
@@ -76,13 +78,8 @@ CREATE TABLE [book_authors] (
 GO
 
 CREATE TABLE [authors] (
-  [id] integer PRIMARY KEY,
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
   [name] nvarchar(255)
-)
-GO
-
-CREATE TABLE [series] (
-  [title] nvarchar(255) PRIMARY KEY
 )
 GO
 
@@ -99,15 +96,16 @@ CREATE TABLE [genres] (
 GO
 
 CREATE TABLE [publishers] (
-  [id] integer PRIMARY KEY,
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
   [name] nvarchar(255)
 )
 GO
 
 CREATE TABLE [orders] (
-  [id] integer PRIMARY KEY,
-  [customer] nvarchar(255),
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
+  [customer] integer,
   [created] date,
+  [order_status] nvarchar(255),
   [discount_id] integer
 )
 GO
@@ -121,50 +119,40 @@ CREATE TABLE [orderDetails] (
 GO
 
 CREATE TABLE [accounts] (
-  [username] nvarchar(255) PRIMARY KEY,
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
+  [username] nvarchar(255),
   [password] nvarchar(255),
-  [first_name] nvarchar(255),
-  [last_name] nvarchar(255),
+  [full_name] nvarchar(255), 
+  [phone_number] nvarchar(20),
   [email] nvarchar(255),
   [gender] nvarchar(255),
   [birthday] date,
-  [image] nvarchar(255)
+  [image] nvarchar(255),
+  [role] smallint
 )
 GO
 
 CREATE TABLE [discounts] (
-  [id] integer PRIMARY KEY,
-  [name] nvarchar(255),
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
+  [code] nvarchar(255),
   [value] money
 )
 GO
 
 CREATE TABLE [customer_discounts] (
-  [customer] nvarchar(255),
+  [customer] integer,
   [discount_id] integer,
   PRIMARY KEY ([customer], [discount_id])
 )
 GO
 
-CREATE TABLE [book_discounts] (
-  [book_id] integer,
-  [discount_id] integer,
-  PRIMARY KEY ([book_id], [discount_id])
-)
-GO
-
 CREATE TABLE [customerAddress] (
-  [user] nvarchar(255),
-  [address] integer,
-  PRIMARY KEY ([user], [address])
-)
-GO
-
-CREATE TABLE [address] (
-  [id] integer PRIMARY KEY,
+  [id] integer IDENTITY(1,1),
+  [customer] integer,
   [street_number] integer,
   [street_name] nvarchar(255),
-  [city] nvarchar(255)
+  [city] nvarchar(255),
+  PRIMARY KEY ([id])
 )
 GO
 
@@ -180,8 +168,8 @@ CREATE TABLE [city] (
 GO
 
 CREATE TABLE [reviews] (
-  [id] integer PRIMARY KEY,
-  [customer] nvarchar(255),
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
+  [customer_id] integer,
   [book_id] integer,
   [review] integer,
   [reviewDate] date,
@@ -201,7 +189,7 @@ GO
 ALTER TABLE [reviews] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
-ALTER TABLE [reviews] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([username])
+ALTER TABLE [reviews] ADD FOREIGN KEY ([customer_id]) REFERENCES [accounts] ([id])
 GO
 
 ALTER TABLE [book_genres] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
@@ -213,7 +201,7 @@ GO
 ALTER TABLE [book_images] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
-ALTER TABLE [orders] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([username])
+ALTER TABLE [orders] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([id])
 GO
 
 ALTER TABLE [orders] ADD FOREIGN KEY ([discount_id]) REFERENCES [discounts] ([id])
@@ -225,25 +213,16 @@ GO
 ALTER TABLE [orderDetails] ADD FOREIGN KEY ([order_id]) REFERENCES [orders] ([id])
 GO
 
-ALTER TABLE [book_discounts] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [book_discounts] ADD FOREIGN KEY ([discount_id]) REFERENCES [discounts] ([id])
-GO
-
-ALTER TABLE [customer_discounts] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([username])
+ALTER TABLE [customer_discounts] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([id])
 GO
 
 ALTER TABLE [customer_discounts] ADD FOREIGN KEY ([discount_id]) REFERENCES [discounts] ([id])
 GO
 
-ALTER TABLE [customerAddress] ADD FOREIGN KEY ([user]) REFERENCES [accounts] ([username])
+ALTER TABLE [customerAddress] ADD FOREIGN KEY ([city]) REFERENCES [city] ([name])
 GO
 
-ALTER TABLE [customerAddress] ADD FOREIGN KEY ([address]) REFERENCES [address] ([id])
-GO
-
-ALTER TABLE [address] ADD FOREIGN KEY ([city]) REFERENCES [city] ([name])
+ALTER TABLE [customerAddress] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([id])
 GO
 
 ALTER TABLE [city] ADD FOREIGN KEY ([country]) REFERENCES [country] ([name])
