@@ -10,9 +10,9 @@ import java.util.Date;
  *
  * @author kat1002
  */
-public class User extends Account{
+public class Admin extends Account{
     
-    public User(int id, String username, String password, String fullName, String phoneNumber, String email, int gender, Date dob, int role) {
+    public Admin(int id, String username, String password, String fullName, String phoneNumber, String email, int gender, Date dob, int role) {
         super(id, username, password, fullName, phoneNumber, email, gender, dob, role);
     }
     
