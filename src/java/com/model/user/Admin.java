@@ -12,8 +12,28 @@ import java.util.Date;
  */
 public class Admin extends Account{
     
-    public Admin(int id, String username, String password, String fullName, String phoneNumber, String email, int gender, Date dob, int role) {
-        super(id, username, password, fullName, phoneNumber, email, gender, dob, role);
+    public Admin(int id, String username, String password, int role) {
+        super(id, username, password, role);
+    }
+
+    @Override
+    public String getRole() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getPage() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean checkRole(String url) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getButton() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

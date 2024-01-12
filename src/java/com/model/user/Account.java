@@ -10,27 +10,17 @@ import java.util.Date;
  *
  * @author kat1002
  */
-public class Account {
+public abstract class Account {
     private int id;
     private String username;
     private String password;
-    private String fullName;
-    private String phoneNumber;
-    private String email;
-    private int gender;
-    private Date dob;
     private int role;
 
-    public Account(int id, String username, String password, String fullName, String phoneNumber, String email, int gender, Date dob, int role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.gender = gender;
-        this.dob = dob;
-        this.role = role;
+    public Account(int id, String username, String password, int role) {
+        setId(id);
+        setUsername(username);
+        setPassword(password);
+        setRole(role);
     }
 
     public int getId() {
@@ -57,55 +47,14 @@ public class Account {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
     public void setRole(int role) {
         this.role = role;
     }
     
-    
+    public abstract String getRole();
+    public abstract String getPage();
+    public abstract boolean checkRole(String url);
+    public abstract String getButton();
     
     
     

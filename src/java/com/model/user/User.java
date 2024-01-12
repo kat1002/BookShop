@@ -12,8 +12,45 @@ import java.util.Date;
  */
 public class User extends Account{
     
-    public User(int id, String username, String password, String fullName, String phoneNumber, String email, int gender, Date dob, int role) {
-        super(id, username, password, fullName, phoneNumber, email, gender, dob, role);
+    private String fullName;
+    private String phoneNumber;
+    private String email;
+    private int gender;
+    private Date dob;
+    
+    public User(int id, String username, String password, int role) {
+        super(id, username, password, role);
+    }
+
+    public User( int id, String username, String password, int role, String fullName, String phoneNumber, String email, int gender, Date dob) {
+        super(id, username, password, role);
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.gender = gender;
+        this.dob = dob;
+    }
+    
+    
+
+    @Override
+    public String getRole() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getPage() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean checkRole(String url) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getButton() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
