@@ -9,5 +9,40 @@ package com.model.order;
  * @author kat1002
  */
 public class OrderDetail {
+    int bookId;
+    int orderId;
+    int amount; 
+    public OrderDetail() {
+    }
+
+    public OrderDetail(int bookId, int orderId, int amount) {
+        this.bookId = bookId;
+        this.orderId = orderId;
+        this.amount = amount;
+    }
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
     
 }
