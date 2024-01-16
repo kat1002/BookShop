@@ -9,9 +9,9 @@ package com.model.discount;
  * @author kat1002
  */
 public class Discount {
-   private int id;
-   private String code;
-   private double value;
+    int id;
+    String code;
+    double value;
 
     public Discount() {
     }

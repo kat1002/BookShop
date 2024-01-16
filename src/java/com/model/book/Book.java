@@ -4,50 +4,44 @@
  */
 package com.model.book;
 
-import com.model.author.Author;
-
-import com.model.publisher.Publisher;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
  * @author kat1002
  */
 public class Book {
-  private  int id;
-  private  String title;
-  private  String ageRate;
-  private  double inPrice;
-  private  double outPrice;
-  private  int stock;
-  private  Publisher publisher;
-  private  String series;
-  private  String translator;
-  private  Date date;
-  private  String language;
-  private  String coverType;
-  private  float discount;
-  private  List<Author> authors = new ArrayList<>();
+    int id;
+    String title;
+    String ageRate;
+    double inPrice;
+    double outPrice;
+    int stock;
+    int publisherId;
+    String series;
+    String translator;
+    Date date;
+    String language;
+    String coverType;
+    float discountId;
 
     public Book() {
     }
 
-    public Book(int id, String title, String ageRate, double inPrice, double outPrice, int stock, Publisher publisher, String series, String translator, Date date, String language, String coverType, float discount) {
+    public Book(int id, String title, String ageRate, double inPrice, double outPrice, int stock, int publisherId, String series, String translator, Date date, String language, String coverType, float discountId) {
         this.id = id;
         this.title = title;
         this.ageRate = ageRate;
         this.inPrice = inPrice;
         this.outPrice = outPrice;
         this.stock = stock;
-        this.publisher = publisher;
+        this.publisherId = publisherId;
         this.series = series;
         this.translator = translator;
         this.date = date;
         this.language = language;
         this.coverType = coverType;
-        this.discount = discount;
+        this.discountId = discountId;
     }
 
     public int getId() {
@@ -98,12 +92,12 @@ public class Book {
         this.stock = stock;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
+    public int getPublisherId() {
+        return publisherId;
     }
 
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
     }
 
     public String getSeries() {
@@ -146,21 +140,12 @@ public class Book {
         this.coverType = coverType;
     }
 
-    public float getDiscount() {
-        return discount;
+    public float getDiscountId() {
+        return discountId;
     }
 
-    public void setDiscount(float discount) {
-        this.discount = discount;
+    public void setDiscountId(float discountId) {
+        this.discountId = discountId;
     }
-
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
-
     
 }
