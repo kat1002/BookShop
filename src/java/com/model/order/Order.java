@@ -4,6 +4,7 @@
  */
 package com.model.order;
 
+import com.model.discount.Discount;
 import java.util.Date;
 
 /**
@@ -11,16 +12,16 @@ import java.util.Date;
  * @author kat1002
  */
 public class Order {
-    int id;
-    int customerId;
-    Date created;
-    String orderStatus;
-    int discountId;
+   private int id;
+   private int customerId;
+   private Date created;
+   private String orderStatus;
+   private Discount discountId;
 
     public Order() {
     }
 
-    public Order(int id, int customerId, Date created, String orderStatus, int discountId) {
+    public Order(int id, int customerId, Date created, String orderStatus, Discount discountId) {
         this.id = id;
         this.customerId = customerId;
         this.created = created;
@@ -60,11 +61,11 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public int getDiscountId() {
+    public Discount getDiscountId() {
         return discountId;
     }
 
-    public void setDiscountId(int discountId) {
+    public void setDiscountId(Discount discountId) {
         this.discountId = discountId;
     }
 }
