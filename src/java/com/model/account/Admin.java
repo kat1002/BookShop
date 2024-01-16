@@ -12,8 +12,8 @@ import java.util.Date;
  */
 public class Admin extends Account{
     
-    public Admin(int id, String username, String password, int role) {
-        super(id, username, password, role);
+    public Admin(int id, String username, String password) {
+        super(id, username, password, 1);
     }
 
     @Override

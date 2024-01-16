@@ -18,8 +18,8 @@ public class User extends Account{
     private int gender;
     private Date dob;
     
-    public User(int id, String username, String password, int role) {
-        super(id, username, password, role);
+    public User(int id, String username, String password) {
+        super(id, username, password, 0);
     }
 
     public User( int id, String username, String password, int role, String fullName, String phoneNumber, String email, int gender, Date dob) {
