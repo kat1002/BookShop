@@ -9,9 +9,9 @@ package com.model.order;
  * @author kat1002
  */
 public class OrderDetail {
-    int bookId;
-    int orderId;
-    int amount; 
+   private int bookId;
+   private int orderId;
+   private int amount; 
     public OrderDetail() {
     }
 

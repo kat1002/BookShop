@@ -4,13 +4,18 @@
  */
 package com.model.author;
 
+import com.model.book.Book;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author kat1002
  */
 public class Author {
-    int id;
-    String name;
+    private int id;
+    private String name;
+    private List<Book> book = new ArrayList<>();
 
     public Author() {
     }
@@ -35,5 +40,13 @@ public class Author {
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    public List<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(List<Book> book) {
+        this.book = book;
+    }
+
 }
