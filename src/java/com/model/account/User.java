@@ -5,6 +5,7 @@
 package com.model.account;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,7 @@ public class User extends Account{
     private String email;
     private int gender;
     private Date dob;
+    private List<Integer> discounts;
     
     public User(int id, String username, String password) {
         super(id, username, password, 0);
@@ -31,8 +33,6 @@ public class User extends Account{
         this.dob = dob;
     }
     
-    
-
     @Override
     public String getRole() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -53,4 +53,7 @@ public class User extends Account{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public void addDiscount(int id){
+        discounts.add(id);
+    }
 }
