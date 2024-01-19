@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Register</title>
     </head>
     <body>
         <%@include file="header.jsp" %>
@@ -18,17 +18,18 @@
         <div>
 
             <div>
-                <h1>Đăng ký</h1>
-                <h1><a href="<c:url value="/login.jsp"/>">Đăng nhập</a></h1>
+                <h1>Register Page</h1>
+                <h1><a href="<c:url value="/login.jsp"/>">Login</a></h1>
             </div>
 
             <form>
-                <label for="user">Số điện thoại</label> <br/>
-                <input type="text" name="user" id="user" placeholder="Nhập số điện thoại" required autofocus><br/>
-                <label for="user">Mật khẩu</label><br/>
-                <input type="text" name="pass" id="pass" placeholder="Nhập mật khẩu" required><br/>
-
-                <button type="submit">Đăng ký</button>
+                <label for="user">Username</label><br/>
+                <input type="text" name="username" id = "username" placeholder="Enter username" required autofocus> <br/>
+                <label for="user">Password</label><br/>
+                <input type="text" name="pass" id="pass" placeholder="Enter password" required><br/>
+                <label for="user">Re-enter Password</label><br/>
+                <input type="text" name="pass" id="pass" placeholder="Enter password" required><br/>
+                <button type="submit">Register</button>
             </form>
 
         </div>

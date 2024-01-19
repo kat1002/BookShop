@@ -14,10 +14,6 @@
     </head>
     <body>
         <div>
-            <h1>Book Shop Project Of PRJ301</h1>
-            <p>A project made by 4 excellent, actually 3</p>
-            <h2>LIÊN HỆ</h2>
-            <p>0705410751</p>
         </div>
     </body>
 </html>
