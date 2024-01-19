@@ -11,7 +11,7 @@ import java.util.Date;
  * @author kat1002
  */
 public class Admin extends Account{
-    
+  
     public Admin(int id, String username, String password) {
         super(id, username, password, 1);
     }

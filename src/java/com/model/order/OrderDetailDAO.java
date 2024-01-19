@@ -15,7 +15,7 @@ import java.util.Optional;
 public class OrderDetailDAO implements DAO<OrderDetail>{
 
     @Override
-    public Optional<OrderDetail> get(long id) {
+    public Optional<OrderDetail> get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

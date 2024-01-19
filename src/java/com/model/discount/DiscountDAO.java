@@ -15,7 +15,7 @@ import java.util.Optional;
 public class DiscountDAO implements DAO<Discount> {
 
     @Override
-    public Optional<Discount> get(long id) {
+    public Optional<Discount> get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

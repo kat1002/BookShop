@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,26 +14,21 @@
     </head>
     <body>
         <div>
-            
             <div>
             <h1>Login Page</h1>
             <h1><a href="<c:url value="/register.jsp"/>">Register</a></h1>
             </div>
-
             <form>
-                <label for="user">Số điện thoại/Email</label> <br/>
+                <label for="user">Phone/Email</label> <br/>
                 <input type="text" name="user" id="user" placeholder="username" required autofocus><br/>
-                <label for="user">Mật khẩu</label><br/>
+                <label for="user">Password</label><br/>
                 <input type="text" name="pass" id="pass" placeholder="password" required>
-
                 <div>
                     <input name="remember" value="1" type="checkbox">
                     <label for="exampleCheck1">Remember me</label>
                 </div>
-                
+
                 <button type="submit">Login</button>
             </form>
-
-        </div>
     </body>
 </html>

@@ -15,7 +15,7 @@ import java.util.Optional;
 public class BookDAO implements DAO<Book> {
 
     @Override
-    public Optional<Book> get(long id) {
+    public Optional<Book> get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
