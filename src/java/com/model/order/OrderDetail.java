@@ -4,29 +4,34 @@
  */
 package com.model.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author kat1002
  */
 public class OrderDetail {
-    int bookId;
-    int orderId;
-    int amount; 
+
+    private int booksId;
+    private int orderId;
+    private int amount;
+
     public OrderDetail() {
     }
 
-    public OrderDetail(int bookId, int orderId, int amount) {
-        this.bookId = bookId;
+    public OrderDetail(int booksId, int orderId, int amount) {
+        this.booksId = booksId;
         this.orderId = orderId;
         this.amount = amount;
     }
 
-    public int getBookId() {
-        return bookId;
+    public int getBooksId() {
+        return booksId;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setBooksId(int booksId) {
+        this.booksId = booksId;
     }
 
     public int getOrderId() {
@@ -44,5 +49,5 @@ public class OrderDetail {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-    
+
 }
