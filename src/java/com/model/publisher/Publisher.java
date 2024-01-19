@@ -2,25 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.model.author;
-
-import com.model.book.Book;
-import java.util.ArrayList;
-import java.util.List;
+package com.model.publisher;
 
 /**
  *
- * @author kat1002
+ * @author asus
  */
-public class Author {
-    private int id;
-    private String name;
-    private List<Book> books = new ArrayList<>();
+public class Publisher {
+  private int id;
+  private String name;
 
-    public Author() {
+    public Publisher() {
     }
 
-    public Author(int id, String name) {
+    public Publisher(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -40,13 +35,5 @@ public class Author {
     public void setName(String name) {
         this.name = name;
     }
-
-    public List<Book> getBook() {
-        return books;
-    }
-
-    public void setBook(List<Book> book) {
-        this.books = book;
-    }
-
+  
 }
