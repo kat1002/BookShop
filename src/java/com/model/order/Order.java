@@ -16,6 +16,7 @@ public class Order {
     Date created;
     String orderStatus;
     int discountId;
+    
 
     public Order() {
     }

@@ -4,30 +4,38 @@
  */
 package com.model.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author kat1002
  */
 public class OrderDetail {
-   private int bookId;
+   private List<Integer> booksId = new ArrayList<>();
    private int orderId;
    private int amount; 
+   
     public OrderDetail() {
     }
 
-    public OrderDetail(int bookId, int orderId, int amount) {
-        this.bookId = bookId;
+    public OrderDetail(int orderId, int amount) {
         this.orderId = orderId;
         this.amount = amount;
     }
 
-    public int getBookId() {
-        return bookId;
+    public List<Integer> getBooksId() {
+        return booksId;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setBookId(List<Integer> booksId) {
+        this.booksId = booksId;
     }
+    
+    public void insertBooksId(int id){
+        booksId.add(id);
+    }
+   
 
     public int getOrderId() {
         return orderId;

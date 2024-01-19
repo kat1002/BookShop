@@ -28,7 +28,7 @@ public class Book {
    private String language;
    private String coverType;
    private float discount;
-   private List<Author> author = new ArrayList<>();
+   private List<Author> authors = new ArrayList<>();
 
     public Book() {
     }
@@ -154,11 +154,11 @@ public class Book {
     }
 
     public List<Author> getAuthor() {
-        return author;
+        return authors;
     }
 
     public void setAuthor(List<Author> author) {
-        this.author = author;
+        this.authors = author;
     }
 
 

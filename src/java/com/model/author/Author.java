@@ -15,7 +15,7 @@ import java.util.List;
 public class Author {
     private int id;
     private String name;
-    private List<Book> book = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     public Author() {
     }
@@ -42,11 +42,11 @@ public class Author {
     }
 
     public List<Book> getBook() {
-        return book;
+        return books;
     }
 
     public void setBook(List<Book> book) {
-        this.book = book;
+        this.books = book;
     }
 
 }
