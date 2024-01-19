@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author asus
  */
-public class Reviews {
+public class Review {
     private int id;
     private Account customerId;
     private Book bookId;
@@ -20,10 +20,10 @@ public class Reviews {
     private Date reviewDate;
     private String detail;
 
-    public Reviews() {
+    public Review() {
     }
 
-    public Reviews(int id, Account customerId, Book bookId, int review, Date reviewDate, String detail) {
+    public Review(int id, Account customerId, Book bookId, int review, Date reviewDate, String detail) {
         this.id = id;
         this.customerId = customerId;
         this.bookId = bookId;

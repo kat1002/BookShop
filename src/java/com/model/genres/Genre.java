@@ -12,14 +12,14 @@ import java.util.List;
  *
  * @author asus
  */
-public class Genres {
+public class Genre {
     private String title;
     private List<Book> book =new ArrayList<>();
 
-    public Genres() {
+    public Genre() {
     }
 
-    public Genres(String title) {
+    public Genre(String title) {
         this.title = title;
     }
 

@@ -13,19 +13,17 @@ import com.model.account.Account;
 public class CustomerAddress {
     private int id;
     private Account customer;
-    private int street_number;
-    private String street_name;
-    private City city;
+    private String address;
+    private String country;
 
     public CustomerAddress() {
     }
 
-    public CustomerAddress(int id, Account customer, int street_number, String street_name, City city) {
+    public CustomerAddress(int id, Account customer, String address, String country) {
         this.id = id;
         this.customer = customer;
-        this.street_number = street_number;
-        this.street_name = street_name;
-        this.city = city;
+        this.address = address;
+        this.country = country;
     }
 
     public int getId() {
@@ -44,28 +42,22 @@ public class CustomerAddress {
         this.customer = customer;
     }
 
-    public int getStreet_number() {
-        return street_number;
+    public String getAddress() {
+        return address;
     }
 
-    public void setStreet_number(int street_number) {
-        this.street_number = street_number;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getStreet_name() {
-        return street_name;
+    public String getCountry() {
+        return country;
     }
 
-    public void setStreet_name(String street_name) {
-        this.street_name = street_name;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public City getCity() {
-        return city;
-    }
 
-    public void setCity(City city) {
-        this.city = city;
-    }
     
 }

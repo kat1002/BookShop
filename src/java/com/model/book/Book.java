@@ -178,8 +178,13 @@ public class Book {
         this.authors = authors;
     }
 
+    public void insertImages(String href) {
+        images.add(href);
+    }
 
-
+    public void insertAuthors(Author a) {
+        authors.add(a);
+    }
     
     
 }

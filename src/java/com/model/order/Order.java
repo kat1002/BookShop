@@ -4,19 +4,21 @@
  */
 package com.model.order;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author kat1002
  */
 public class Order {
-    int id;
-    int customerId;
-    Date created;
-    String orderStatus;
-    int discountId;
-    
+   private int id;
+   private int customerId;
+   private Date created;
+   private String orderStatus;
+   private int discountId;
+   private List<OrderDetail> orderdetails= new ArrayList<>();
 
     public Order() {
     }
@@ -67,5 +69,16 @@ public class Order {
 
     public void setDiscountId(int discountId) {
         this.discountId = discountId;
+    }
+
+    public List<OrderDetail> getOrderdetails() {
+        return orderdetails;
+    }
+
+    public void setOrderdetails(List<OrderDetail> orderdetails) {
+        this.orderdetails = orderdetails;
+    }
+    public void insertOrderDetail(OrderDetail od){
+        orderdetails.add(od);
     }
 }

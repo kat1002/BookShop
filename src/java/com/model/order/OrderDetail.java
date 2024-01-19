@@ -12,30 +12,27 @@ import java.util.List;
  * @author kat1002
  */
 public class OrderDetail {
-   private List<Integer> booksId = new ArrayList<>();
-   private int orderId;
-   private int amount; 
-   
+
+    private int booksId;
+    private int orderId;
+    private int amount;
+
     public OrderDetail() {
     }
 
-    public OrderDetail(int orderId, int amount) {
+    public OrderDetail(int booksId, int orderId, int amount) {
+        this.booksId = booksId;
         this.orderId = orderId;
         this.amount = amount;
     }
 
-    public List<Integer> getBooksId() {
+    public int getBooksId() {
         return booksId;
     }
 
-    public void setBookId(List<Integer> booksId) {
+    public void setBooksId(int booksId) {
         this.booksId = booksId;
     }
-    
-    public void insertBooksId(int id){
-        booksId.add(id);
-    }
-   
 
     public int getOrderId() {
         return orderId;
@@ -52,5 +49,5 @@ public class OrderDetail {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-    
+
 }

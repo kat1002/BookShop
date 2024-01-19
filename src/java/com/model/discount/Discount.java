@@ -11,15 +11,15 @@ package com.model.discount;
 public class Discount {
    private int id;
    private String code;
-   private double value;
+   private float value;
 
     public Discount() {
     }
 
-    public Discount(int id, String code, double value) {
+    public Discount(int id, String code, float value) {
         this.id = id;
         this.code = code;
-        this.value = value;
+        this.value = (float) value;
     }
 
     public int getId() {
@@ -42,8 +42,8 @@ public class Discount {
         return value;
     }
 
-    public void setValue(double value) {
-        this.value = value;
+    public void setValue(float value) {
+        this.value =  value;
     }
     
 }
