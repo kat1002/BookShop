@@ -28,7 +28,7 @@
                 <label for="user">Password</label><br/>
                 <input type="text" name="pass" id="pass" placeholder="Enter password" required><br/>
                 <label for="user">Re-enter Password</label><br/>
-                <input type="text" name="pass" id="pass" placeholder="Enter password" required><br/>
+                <input type="password" name="pass" id="pass" placeholder="Enter password" required><br/>
                 <button type="submit">Register</button>
             </form>
 

@@ -22,7 +22,7 @@
                 <label for="user">Phone/Email</label> <br/>
                 <input type="text" name="user" id="user" placeholder="username" required autofocus><br/>
                 <label for="user">Password</label><br/>
-                <input type="text" name="pass" id="pass" placeholder="password" required>
+                <input type="password" name="pass" id="pass" placeholder="password" required>
                 <div>
                     <input name="remember" value="1" type="checkbox">
                     <label for="exampleCheck1">Remember me</label>
