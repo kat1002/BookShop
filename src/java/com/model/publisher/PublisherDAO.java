@@ -15,7 +15,7 @@ import java.util.Optional;
 public class PublisherDAO implements DAO<Publisher>{
 
     @Override
-    public Optional<Publisher> get(long id) {
+    public Optional<Publisher> get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

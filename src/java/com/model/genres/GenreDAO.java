@@ -15,7 +15,7 @@ import java.util.Optional;
 public class GenreDAO implements DAO<Genre> {
 
     @Override
-    public Optional<Genre> get(long id) {
+    public Optional<Genre> get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -15,7 +15,7 @@ import java.util.Optional;
 public class ReviewDAO implements DAO<Review> {
 
     @Override
-    public Optional<Review> get(long id) {
+    public Optional<Review> get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
