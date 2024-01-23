@@ -18,51 +18,7 @@
 </head>
 
 <body>
-	<header>
-		<div class="row-menu1">
-			<ul class="menu">
-				<li class="menu-item">
-                                    <a href = "cart.jsp">
-					<button class="open-button menu-link" onclick="">
-						<i class="fa-solid fa-cart-shopping"></i> My Cart
-					</button>
-                                    </a>
-				</li>
-				<li>
-					<a href="login.jsp">
-						<button class="open-button menu-link" onclick="">
-							<i class="fa-solid fa-user"></i> Login
-						</button>
-					</a>
-				</li>
-			</ul>
-			
-		</div>
-		<div class="row-menu2">
-			<a href="main.html"><img class="logo" src="media/LOGO.png" alt="logo" /></a>
-			<ul class="menu">
-				<li class="menu-item">
-					<a class="menu-link" href="main.html">HOME</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="contact.html">CONTACT</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="faq.html">HELP / FAQ</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="categories.html">CATEGORIES</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="about.html">WHO ARE WE?</a>
-				</li>
-			</ul>
-			<form class="search-button">
-				<input type="text" placeholder="Search..." />
-				<button><i class="fa fa-search"></i></button>
-			</form>
-		</div>
-	</header>
+        <%@include file="header.jsp" %>
 	<main>
 		<div class="slideshow-container">
 			<div class="mySlides fade">
@@ -471,53 +427,9 @@
 			</div>
 		</div>
 	</main>
-	<footer>
-		<div id="end">
-			<div class="card">
-				<p class="title3">CUSTOMER SERVICES</p>
-				<ul>
-					<li><a href="contact.html">Contact</a></li>
-					<li><a href="#">Returns</a></li>
-					<li><a href="contact.html">Sitemap</a></li>
-					<li><a href="#">Gift Vouchers</a></li>
-				</ul>
-			</div>
-			<div class="card">
-				<p class="title3">INFORMATION</p>
-				<ul>
-					<li><a href="about.html">About me</a></li>
-					<li><a href="#">Delivery information</a></li>
-					<li><a href="#">Privacy policy</a></li>
-				</ul>
-			</div>
-			<div class="card">
-				<p class="title3">SOCIAL NETWORK</p>
-				<ul>
-					<li><a href="#">Facebook</a></li>
-					<li><a href="#">Youtube</a></li>
-					<li><a href="#">Twitter</a></li>
-				</ul>
-			</div>
-			<div class="card">
-				<p class="title3">PAYMENT METHODS</p>
-				<ul>
-					<li>
-						<img src="..media/pay_2.webp" alt="" /><img src="..media/pay_3.webp" alt="" />
-					</li>
-					<li>
-						<img src="..media/pay_4.webp" alt="" /><img src="..media/pay_5.webp" alt="" />
-					</li>
-					<li>
-						<img src="..media/pay_7.webp" alt="" /><img src="..media/pay_8.webp" alt="" />
-					</li>
-				</ul>
-			</div>
-		</div>
-		<p id="cpr">Copyright © kat1002</p>
-	</footer>
-	<script src="../JS/Slide.js"></script>
-	<script src="../JS/Login.js"></script>
-	<script src="../JS/Cart.js"></script>
+        <%@include file="footer.jsp" %>
+
+	<script src="../js/Slide.js"></script>
 </body>
 
 </html>

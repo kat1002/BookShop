@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet {
         Account userAccount = account.checkLogin(username, password);
         
         if(userAccount != null){
-        
+            
         }
     }
 
