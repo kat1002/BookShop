@@ -60,7 +60,6 @@ CREATE TABLE [books] (
   [releaseYear] date,
   [language] nvarchar(255),
   [coverType] nvarchar(255),
-  [discount] float
 )
 GO
 
@@ -105,8 +104,7 @@ CREATE TABLE [orders] (
   [id] integer IDENTITY(1,1) PRIMARY KEY,
   [customer] integer,
   [created] date,
-  [order_status] nvarchar(255),
-  [discount_id] integer
+  [order_status] nvarchar(255)
 )
 GO
 
@@ -129,20 +127,6 @@ CREATE TABLE [accounts] (
   [birthday] date,
   [image] nvarchar(255),
   [role] smallint
-)
-GO
-
-CREATE TABLE [discounts] (
-  [id] integer IDENTITY(1,1) PRIMARY KEY,
-  [code] nvarchar(255),
-  [value] money
-)
-GO
-
-CREATE TABLE [customer_discounts] (
-  [customer] integer,
-  [discount_id] integer,
-  PRIMARY KEY ([customer], [discount_id])
 )
 GO
 
@@ -204,19 +188,10 @@ GO
 ALTER TABLE [orders] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([id])
 GO
 
-ALTER TABLE [orders] ADD FOREIGN KEY ([discount_id]) REFERENCES [discounts] ([id])
-GO
-
 ALTER TABLE [orderDetails] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
 ALTER TABLE [orderDetails] ADD FOREIGN KEY ([order_id]) REFERENCES [orders] ([id])
-GO
-
-ALTER TABLE [customer_discounts] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([id])
-GO
-
-ALTER TABLE [customer_discounts] ADD FOREIGN KEY ([discount_id]) REFERENCES [discounts] ([id])
 GO
 
 ALTER TABLE [customerAddress] ADD FOREIGN KEY ([city]) REFERENCES [city] ([name])
