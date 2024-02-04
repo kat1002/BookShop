@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.model.account.AccountDAO;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,7 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/Login"})
 public class LoginController extends HttpServlet {
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,16 +40,26 @@ public class LoginController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-        
-        AccountDAO account = new AccountDAO();
-        
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        Account userAccount = account.checkLogin(username, password);
-        
-        if(userAccount != null){
-            
+        try{
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+
+            Account userAccount = WebManager.getInstance().accountDAO.checkLogin(username, password);
+
+            if(userAccount != null){
+                HttpSession session = request.getSession(false);
+                session.setAttribute("account", userAccount);
+                response.sendRedirect("shop.jsp");
+            } else {
+                // loginError : 1 is wrongPassword, 2 is noAccount, 0 is nothing
+                if(WebManager.getInstance().accountDAO.isUsernameExists(username))
+                    request.setAttribute("loginError", 1);
+                else request.setAttribute("loginError", 2);
+
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -102,5 +113,4 @@ public class LoginController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

@@ -31,6 +31,8 @@ public class AccountDAO implements DAO<Account> {
     private final String DELETE   = "DELETE FROM accounts WHERE id = ?";
     private final String INSERT   = "INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)";
     private final String UPDATE   = "UPDATE accounts SET username = ?, password = ?, role = ? WHERE id = ?";
+    
+    private final String USERNAMEEXISTS = "SELECT id FROM accounts WHERE username = ?";
     /**
      * Check if the provided username and password match an account in the database
      * @param username The username to check
@@ -66,6 +68,23 @@ public class AccountDAO implements DAO<Account> {
         }
         
         return curAccount;
+    }
+    
+    public boolean isUsernameExists(String username){
+        try{
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(LOGIN);
+            if(conn != null){
+                ptm.setString(1, username);
+                ResultSet rs = ptm.executeQuery();
+                
+                if(rs.next()) return true;
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
     }
 
     public Account register(String username, String password) throws ClassNotFoundException{

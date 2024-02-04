@@ -47,19 +47,45 @@ WHERE  TABLE_TYPE = 'BASE TABLE'
 
 Exec Sp_executesql @sql2 
 GO 
+
+CREATE TABLE [accounts] (
+  [id] INT PRIMARY KEY AUTO_INCREMENT,
+  [username] VARCHAR(255) NOT NULL,
+  [password] VARCHAR(255) NOT NULL,
+  [role] INT NOT NULL,
+  [email] NVARCHAR(255) NOT NULL,
+  [full_name] NVARCHAR(255) NOT NULL,
+  [address] NVARCHAR(255) NOT NULL,
+  [phone_number] NVARCHAR(20) NOT NULL,
+  [birthday] date,
+)
+GO
+
+CREATE TABLE [accounts] (
+  [id] integer IDENTITY(1,1) PRIMARY KEY,
+  [username] nvarchar(255),
+  [password] nvarchar(255),
+  [full_name] nvarchar(255), 
+  [phone_number] nvarchar(20),
+  [email] nvarchar(255),
+  [gender] nvarchar(255),
+  [birthday] date,
+  [image] nvarchar(255),
+  [role] integer
+)
+GO
+
 CREATE TABLE [books] (
   [id] integer IDENTITY(1,1) PRIMARY KEY,
   [title] nvarchar(255),
-  [ageRate] nvarchar(255),
-  [inPrice] money,
+  [price] money,
   [stock] integer,
-  [outPrice] money,
-  [publisher] integer,
-  [series] nvarchar(255),
+  [genres] integer,
+  [publisherId] integer,
+  [seriesId] nvarchar(255),
   [translator] nvarchar(255),
   [releaseYear] date,
   [language] nvarchar(255),
-  [coverType] nvarchar(255),
 )
 GO
 
@@ -83,14 +109,15 @@ CREATE TABLE [authors] (
 GO
 
 CREATE TABLE [book_genres] (
-  [book_id] integer,
-  [genre_title] nvarchar(255),
-  PRIMARY KEY ([book_id], [genre_title])
+  [book_id] integer FOREIGN KEY,
+  [genre_id] integer FOREIGN KEY,
+  PRIMARY KEY ([book_id], [genre_id])
 )
 GO
 
 CREATE TABLE [genres] (
-  [title] nvarchar(255) PRIMARY KEY
+  [id] integer IDENTITY(1, 1) PRIMARY KEY,
+  [title] nvarchar(255)
 )
 GO
 
@@ -99,6 +126,14 @@ CREATE TABLE [publishers] (
   [name] nvarchar(255)
 )
 GO
+
+CREATE TABLE [carts]{
+
+}
+
+CREATE TABLE [items]{
+
+}
 
 CREATE TABLE [orders] (
   [id] integer IDENTITY(1,1) PRIMARY KEY,
@@ -116,26 +151,13 @@ CREATE TABLE [orderDetails] (
 )
 GO
 
-CREATE TABLE [accounts] (
-  [id] integer IDENTITY(1,1) PRIMARY KEY,
-  [username] nvarchar(255),
-  [password] nvarchar(255),
-  [full_name] nvarchar(255), 
-  [phone_number] nvarchar(20),
-  [email] nvarchar(255),
-  [gender] nvarchar(255),
-  [birthday] date,
-  [image] nvarchar(255),
-  [role] smallint
-)
-GO
-
 CREATE TABLE [customerAddress] (
   [id] integer IDENTITY(1,1),
   [customer] integer,
   [street_number] integer,
   [street_name] nvarchar(255),
   [city] nvarchar(255),
+  [country] nvarchar(255),
   PRIMARY KEY ([id])
 )
 GO
@@ -148,16 +170,6 @@ GO
 CREATE TABLE [city] (
   [name] nvarchar(255) PRIMARY KEY,
   [country] nvarchar(255)
-)
-GO
-
-CREATE TABLE [reviews] (
-  [id] integer IDENTITY(1,1) PRIMARY KEY,
-  [customer_id] integer,
-  [book_id] integer,
-  [review] integer,
-  [reviewDate] date,
-  [detail] text
 )
 GO
 
