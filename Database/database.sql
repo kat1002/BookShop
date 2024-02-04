@@ -49,69 +49,21 @@ Exec Sp_executesql @sql2
 GO 
 
 CREATE TABLE [accounts] (
-  [id] INT PRIMARY KEY AUTO_INCREMENT,
+  [id] INT IDENTITY(1, 1) PRIMARY KEY,
   [username] VARCHAR(255) NOT NULL,
   [password] VARCHAR(255) NOT NULL,
   [role] INT NOT NULL,
-  [email] NVARCHAR(255) NOT NULL,
-  [full_name] NVARCHAR(255) NOT NULL,
-  [address] NVARCHAR(255) NOT NULL,
-  [phone_number] NVARCHAR(20) NOT NULL,
+  [email] NVARCHAR(255),
+  [full_name] NVARCHAR(255),
+  [address] NVARCHAR(255),
+  [phone_number] NVARCHAR(20),
   [birthday] date,
-)
-GO
-
-CREATE TABLE [accounts] (
-  [id] integer IDENTITY(1,1) PRIMARY KEY,
-  [username] nvarchar(255),
-  [password] nvarchar(255),
-  [full_name] nvarchar(255), 
-  [phone_number] nvarchar(20),
-  [email] nvarchar(255),
-  [gender] nvarchar(255),
-  [birthday] date,
-  [image] nvarchar(255),
-  [role] integer
-)
-GO
-
-CREATE TABLE [books] (
-  [id] integer IDENTITY(1,1) PRIMARY KEY,
-  [title] nvarchar(255),
-  [price] money,
-  [stock] integer,
-  [genres] integer,
-  [publisherId] integer,
-  [seriesId] nvarchar(255),
-  [translator] nvarchar(255),
-  [releaseYear] date,
-  [language] nvarchar(255),
-)
-GO
-
-CREATE TABLE [book_images] (
-  [href] nvarchar(255) PRIMARY KEY,
-  [book_id] integer
-)
-GO
-
-CREATE TABLE [book_authors] (
-  [book_id] integer,
-  [author_id] integer,
-  PRIMARY KEY ([book_id], [author_id])
 )
 GO
 
 CREATE TABLE [authors] (
   [id] integer IDENTITY(1,1) PRIMARY KEY,
   [name] nvarchar(255)
-)
-GO
-
-CREATE TABLE [book_genres] (
-  [book_id] integer FOREIGN KEY,
-  [genre_id] integer FOREIGN KEY,
-  PRIMARY KEY ([book_id], [genre_id])
 )
 GO
 
@@ -127,90 +79,49 @@ CREATE TABLE [publishers] (
 )
 GO
 
-CREATE TABLE [carts]{
-
-}
-
-CREATE TABLE [items]{
-
-}
-
-CREATE TABLE [orders] (
+CREATE TABLE [books] (
   [id] integer IDENTITY(1,1) PRIMARY KEY,
-  [customer] integer,
-  [created] date,
-  [order_status] nvarchar(255)
+  [title] nvarchar(255),
+  [price] money,
+  [stock] integer,
+  [genre_id] integer,
+  [publisher_id] integer,
+  [author_id] int,
+  FOREIGN KEY ([genre_id]) REFERENCES [genres]([id]),
+  FOREIGN KEY ([publisher_id]) REFERENCES [publishers]([id]),
+  FOREIGN KEY ([author_id]) REFERENCES [authors]([id])
 )
 GO
 
-CREATE TABLE [orderDetails] (
+CREATE TABLE [book_images] (
+  [href] nvarchar(255) PRIMARY KEY,
   [book_id] integer,
-  [order_id] integer,
-  [amount] integer,
-  PRIMARY KEY ([book_id], [order_id])
+  FOREIGN KEY ([book_id]) REFERENCES [books]([id]) 
 )
 GO
 
-CREATE TABLE [customerAddress] (
-  [id] integer IDENTITY(1,1),
-  [customer] integer,
-  [street_number] integer,
+CREATE TABLE [carts] (
+	[id] INT IDENTITY(1, 1) PRIMARY KEY,
+	[account_id] INT,
+	FOREIGN KEY ([account_id]) REFERENCES [accounts]([id])
+)
+
+CREATE TABLE [items](
+	[cart_id] INT,
+	[book_id] INT,
+	[amout] INT,
+	PRIMARY KEY([cart_id], [book_id]),
+	FOREIGN KEY ([cart_id]) REFERENCES [carts]([id]),
+	FOREIGN KEY ([book_id]) REFERENCES [books]([id]),
+)
+
+CREATE TABLE [accountAddress] (
+  [id] INT IDENTITY(1,1) PRIMARY KEY,
+  [account_id] INT,
+  [street_number] nvarchar(255),
   [street_name] nvarchar(255),
   [city] nvarchar(255),
   [country] nvarchar(255),
-  PRIMARY KEY ([id])
+  FOREIGN KEY ([account_id]) REFERENCES [accounts]([id])
 )
-GO
-
-CREATE TABLE [country] (
-  [name] nvarchar(255) PRIMARY KEY
-)
-GO
-
-CREATE TABLE [city] (
-  [name] nvarchar(255) PRIMARY KEY,
-  [country] nvarchar(255)
-)
-GO
-
-ALTER TABLE [books] ADD FOREIGN KEY ([publisher]) REFERENCES [publishers] ([id])
-GO
-
-ALTER TABLE [book_authors] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [book_authors] ADD FOREIGN KEY ([author_id]) REFERENCES [authors] ([id])
-GO
-
-ALTER TABLE [reviews] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [reviews] ADD FOREIGN KEY ([customer_id]) REFERENCES [accounts] ([id])
-GO
-
-ALTER TABLE [book_genres] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [book_genres] ADD FOREIGN KEY ([genre_title]) REFERENCES [genres] ([title])
-GO
-
-ALTER TABLE [book_images] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [orders] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([id])
-GO
-
-ALTER TABLE [orderDetails] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [orderDetails] ADD FOREIGN KEY ([order_id]) REFERENCES [orders] ([id])
-GO
-
-ALTER TABLE [customerAddress] ADD FOREIGN KEY ([city]) REFERENCES [city] ([name])
-GO
-
-ALTER TABLE [customerAddress] ADD FOREIGN KEY ([customer]) REFERENCES [accounts] ([id])
-GO
-
-ALTER TABLE [city] ADD FOREIGN KEY ([country]) REFERENCES [country] ([name])
 GO
