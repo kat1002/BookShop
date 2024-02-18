@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <head>
@@ -27,11 +28,21 @@
                                     </a>
 				</li>
 				<li>
-					<a href="login.jsp">
+                                    <c:set var = "account" value="${sessionScope.account}">
+                                        <c:if test = "${sessionScope.account == null}">
+                                            <a href="accountDetail.jsp">
 						<button class="open-button menu-link" onclick="">
 							<i class="fa-solid fa-user"></i> Login
 						</button>
-					</a>
+                                            </a>
+                                        </c:if>
+                                        <c:if test = "${sessionScope.account != null}">
+                                            <a href="login.jsp">
+						<button class="open-button menu-link" onclick="">
+							<i class="fa-solid fa-user"></i> ${sessionScope.account.getUsername()}
+						</button>
+                                            </a>
+                                        </c:if>
 				</li>
 			</ul>
 			
