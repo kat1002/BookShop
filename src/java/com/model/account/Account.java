@@ -4,17 +4,19 @@
  */
 package com.model.account;
 
+import com.model.address.Address;
 import java.util.Date;
 
 /**
  *
  * @author kat1002
  */
-public abstract class Account {
+public class Account {
     private int id;
     private String username;
     private String password;
     private int role;
+    private String fullname;
 
     public Account(int id, String username, String password, int role) {
         setId(id);
@@ -51,11 +53,16 @@ public abstract class Account {
         this.role = role;
     }
     
-    public abstract String getRole();
-    public abstract String getPage();
-    public abstract boolean checkRole(String url);
-    public abstract String getButton();
-    
-    
+    public int getRole(){
+        return role;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
     
 }

@@ -13,7 +13,7 @@ VALUES
 ('NXB Đại Học Quốc Gia TP.HCM'),
 ('NXB Tổng Hợp TPHCM');
 
-INSERT INTO [genres] 
+INSERT INTO [categories] 
 VALUES 
 (N'VĂN HỌC'),
 (N'KINH TẾ'),

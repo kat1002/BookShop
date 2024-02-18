@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.model.author;
+package com.model.category;
 
 import com.model.DAO;
-import com.model.category.CategoryDAO;
 import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
@@ -18,29 +17,28 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author kat1002
  */
-public class AuthorDAO implements DAO<Author> {
-    
+public class CategoryDAO implements DAO<Category>{
+
     //SQL Queries
-    private final String GET        = "SELECT * FROM [authors] WHERE [id] = ?";
-    private final String GETALL     = "SELECT [id], [name] FROM [authors]";
-    private final String DELETE     = "DELETE FROM [authors] WHERE [id] = ?";
-    private final String INSERT     = "INSERT INTO [authors] ([name]) VALUES (?)";
-    private final String UPDATE     = "UPDATE [authors] SET [name] = ? WHERE [id] = ?";
+    private final String GET        = "SELECT * FROM [categories] WHERE [id] = ?";
+    private final String GETALL     = "SELECT [id], [title] FROM [categories]";
+    private final String DELETE     = "DELETE FROM [categories] WHERE [id] = ?";
+    private final String INSERT     = "INSERT INTO [categories] ([title]) VALUES (?)";
+    private final String UPDATE     = "UPDATE [categories] SET [title] = ? WHERE [id] = ?";
+    
     
     @Override
-    public Author get(int id) {
+    public Category get(int id) {
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement st = conn.prepareStatement(GET);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                return new Author(rs.getInt("id"), 
-                        rs.getString("name"));
+                return new Category(rs.getInt("id"), rs.getString("title"));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -48,22 +46,22 @@ public class AuthorDAO implements DAO<Author> {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;    
+        return null;
     }
 
     @Override
-    public List<Author> getAll() {
-        List<Author> list = new ArrayList<>();
+    public List<Category> getAll() {
+        List<Category> list = new ArrayList<>();
         
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement st = conn.prepareStatement(GETALL);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Author a = new Author();
-                a.setId(rs.getInt("id"));
-                a.setName(rs.getString("name"));
-                list.add(a);
+                Category c = new Category();
+                c.setId(rs.getInt("CategoryID"));
+                c.setTitle(rs.getString("CategoryName"));
+                list.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -75,18 +73,17 @@ public class AuthorDAO implements DAO<Author> {
     }
 
     @Override
-    public void insert(Author t) {
+    public void insert(Category t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(Author t, String[] params) {
+    public void update(Category t, String[] params) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(Author t) {
+    public void delete(Category t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
 }

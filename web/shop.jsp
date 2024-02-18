@@ -130,17 +130,8 @@
 		<div class="product">
 			<ul>
 				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
+					<a href="product.jsp"><img src="media/images/vh1.png" alt="" /></a>
+					<a class="menu-link" href="product.jsp">ABC Black</a>
 					<p class="stock">In stock</p>
 					<p class="price">$383.99</p>
 				</li>

@@ -24,13 +24,13 @@ import java.util.logging.Logger;
 public class AccountDAO implements DAO<Account> {
     
     // SQL queries
-    private final String LOGIN    = "SELECT id, role FROM accounts WHERE username = ? AND password = ?";
-    private final String REGISTER = "INSERT INTO accounts (username, password, role) VALUES (?, ?, 0)";
-    private final String GETALL   = "SELECT * FROM accounts";
-    private final String GET      = "SELECT * FROM accounts WHERE id = ?";
-    private final String DELETE   = "DELETE FROM accounts WHERE id = ?";
-    private final String INSERT   = "INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)";
-    private final String UPDATE   = "UPDATE accounts SET username = ?, password = ?, role = ? WHERE id = ?";
+    private final String LOGIN    = "SELECT [id], [role] FROM [accounts] WHERE [username] = ? AND [password] = ?";
+    private final String REGISTER = "INSERT INTO [accounts] ([username], [password], [role]) VALUES (?, ?, 0)";
+    private final String GETALL   = "SELECT * FROM [accounts]";
+    private final String GET      = "SELECT * FROM [accounts] WHERE [id] = ?";
+    private final String DELETE   = "DELETE FROM [accounts] WHERE [id] = ?";
+    private final String INSERT   = "INSERT INTO [accounts] ([username], [password], [role]) VALUES (?, ?, ?)";
+    private final String UPDATE   = "UPDATE [accounts] SET [username] = ?, [password] = ?, [role] = ? WHERE [id] = ?";
     
     private final String USERNAMEEXISTS = "SELECT id FROM accounts WHERE username = ?";
     /**
@@ -55,12 +55,8 @@ public class AccountDAO implements DAO<Account> {
                 if (rs.next()) {
                     int id = rs.getInt("id");
                     int role = rs.getInt("role");
-                        
-                    if (role == 1)
-                        curAccount = new Admin(id, username, password);
-                    else if (role == 0)
-                        curAccount = new User(id, username, password);
-                        
+                    
+                    curAccount = new Account(id, username, password, role);
                 }
             }
         } catch (SQLException e) {
@@ -95,13 +91,14 @@ public class AccountDAO implements DAO<Account> {
             id = generateId();
         } while(isIdExisted(id));
         
-        User newAccount = new User(id, username, password);
+        Account newAccount = new Account(id, username, password, 0);
         // code to insert the new account to the database
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement stmt = conn.prepareStatement(REGISTER);
             stmt.setString(1, username);
             stmt.setString(2, password);
+            
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -143,7 +140,7 @@ public class AccountDAO implements DAO<Account> {
      * @return An Optional containing the Account if found, empty otherwise
      */
     @Override
-    public Optional<Account> get(int id) {
+    public Account get(int id) {
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ptm = conn.prepareStatement(GET);
@@ -155,11 +152,7 @@ public class AccountDAO implements DAO<Account> {
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 int role = rs.getInt("role");
-    
-                if (role == 1)
-                    return Optional.of(new Admin(id, username, password));
-                else if (role == 0)
-                    return Optional.of(new User(id, username, password));
+                return new Account(id, username, password, role);
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -186,11 +179,8 @@ public class AccountDAO implements DAO<Account> {
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 int role = rs.getInt("role");
-    
-                if (role == 1)
-                    accounts.add(new Admin(id, username, password));
-                else if (role == 0)
-                    accounts.add(new User(id, username, password));
+                
+                accounts.add(new Account(id, username, password, role));
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

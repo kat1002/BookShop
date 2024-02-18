@@ -54,8 +54,7 @@ CREATE TABLE [accounts] (
   [password] VARCHAR(255) NOT NULL,
   [role] INT NOT NULL,
   [email] NVARCHAR(255),
-  [full_name] NVARCHAR(255),
-  [birthday] DATE
+  [fullname] NVARCHAR(255)
 )
 GO
 
@@ -65,7 +64,7 @@ CREATE TABLE [authors] (
 )
 GO
 
-CREATE TABLE [genres] (
+CREATE TABLE [categories] (
   [id] INT PRIMARY KEY IDENTITY(1,1),
   [title] NVARCHAR(255)
 )
@@ -82,7 +81,7 @@ CREATE TABLE [books] (
   [title] NVARCHAR(255),
   [price] MONEY,
   [stock] INT,
-  [genre_id] INT,
+  [category_id] INT,
   [publisher_id] INT,
   [author_id] INT
 )
@@ -101,8 +100,8 @@ CREATE TABLE [carts] (
 GO
 
 CREATE TABLE [cart_items](
-	[cart_id] INT FOREIGN KEY REFERENCES [carts]([id]),
-	[book_id] INT FOREIGN KEY REFERENCES [books]([id]),
+	[cart_id] INT,
+	[book_id] INT,
 	[amount] INT,
 	PRIMARY KEY([cart_id], [book_id])
 )
@@ -130,14 +129,16 @@ CREATE TABLE [orders](
 GO
 
 CREATE TABLE [order_details](
-  [book_id] INT FOREIGN KEY REFERENCES [books]([id]),
-  [order_id] INT FOREIGN KEY REFERENCES [orders]([id]),
+  [book_id] INT,
+  [order_id] INT,
   [amount] INT,
-  PRIMARY KEY ([book_id], [order_id])
+  PRIMARY KEY ([book_id], [order_id]),
+  FOREIGN KEY ([order_id]) REFERENCES [orders] ([id]),
+  FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 )
 GO
 
-ALTER TABLE [books] ADD FOREIGN KEY ([genre_id]) REFERENCES [genres] ([id])
+ALTER TABLE [books] ADD FOREIGN KEY ([category_id]) REFERENCES [categories] ([id])
 GO
 
 ALTER TABLE [books] ADD FOREIGN KEY ([publisher_id]) REFERENCES [publishers] ([id])
@@ -150,6 +151,18 @@ ALTER TABLE [book_images] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
 ALTER TABLE [carts] ADD FOREIGN KEY ([account_id]) REFERENCES [accounts] ([id])
+GO
+
+ALTER TABLE [cart_items] ADD FOREIGN KEY ([cart_id]) REFERENCES [carts] ([id])
+GO
+
+ALTER TABLE [cart_items] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
+GO
+
+ALTER TABLE [order_details] ADD FOREIGN KEY ([order_id]) REFERENCES [orders] ([id])
+GO
+
+ALTER TABLE [order_details] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
 ALTER TABLE [account_addresses] ADD FOREIGN KEY ([account_id]) REFERENCES [accounts] ([id])

@@ -28,16 +28,15 @@
                                     </a>
 				</li>
 				<li>
-                                    <c:set var = "account" value="${sessionScope.account}">
                                         <c:if test = "${sessionScope.account == null}">
-                                            <a href="accountDetail.jsp">
+                                            <a href="login.jsp">
 						<button class="open-button menu-link" onclick="">
 							<i class="fa-solid fa-user"></i> Login
 						</button>
                                             </a>
                                         </c:if>
                                         <c:if test = "${sessionScope.account != null}">
-                                            <a href="login.jsp">
+                                            <a href="accountDetail.jsp">
 						<button class="open-button menu-link" onclick="">
 							<i class="fa-solid fa-user"></i> ${sessionScope.account.getUsername()}
 						</button>

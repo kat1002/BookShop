@@ -47,13 +47,13 @@
 				<p class="title3">PAYMENT METHODS</p>
 				<ul>
 					<li>
-						<img src="..media/pay_2.webp" alt="" /><img src="..media/pay_3.webp" alt="" />
+						<img src="media/pay_2.webp" alt="" /><img src="media/pay_3.webp" alt="" />
 					</li>
 					<li>
-						<img src="..media/pay_4.webp" alt="" /><img src="..media/pay_5.webp" alt="" />
+						<img src="media/pay_4.webp" alt="" /><img src="media/pay_5.webp" alt="" />
 					</li>
 					<li>
-						<img src="..media/pay_7.webp" alt="" /><img src="..media/pay_8.webp" alt="" />
+						<img src="media/pay_7.webp" alt="" /><img src="media/pay_8.webp" alt="" />
 					</li>
 				</ul>
 			</div>

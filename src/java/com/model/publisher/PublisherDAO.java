@@ -10,12 +10,12 @@ import java.util.Optional;
 
 /**
  *
- * @author asus
+ * @author kat1002
  */
 public class PublisherDAO implements DAO<Publisher>{
 
     @Override
-    public Optional<Publisher> get(int id) {
+    public Publisher get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

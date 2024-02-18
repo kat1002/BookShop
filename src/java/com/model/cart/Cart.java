@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.model.address;
+package com.model.cart;
 
 /**
  *
- * @author asus
+ * @author kat1002
  */
-public class CustomerAddressDAO {
+public class Cart {
     
 }
