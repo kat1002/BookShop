@@ -4,7 +4,6 @@
  */
 package com.controller;
 
-import com.model.account.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,19 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.model.account.AccountDAO;
-import jakarta.servlet.http.HttpSession;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author kat1002
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/Login"})
-public class LoginController extends HttpServlet {
-    
+@WebServlet(name = "Register", urlPatterns = {"/register"})
+public class Register extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,28 +29,37 @@ public class LoginController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         try{
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            String repassword = request.getParameter("repassword");
+            String fullname = request.getParameter("fullname");
+            String email = request.getParameter("email");
+            
+            if(WebManager.getInstance().accountDAO.isUsernameExists(username)){
+                request.setAttribute("RegisterError", "Username already exists");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
 
-            Account userAccount = WebManager.getInstance().accountDAO.checkLogin(username, password);
-
-            if(userAccount != null){
-                HttpSession session = request.getSession(false);
-                session.setAttribute("account", userAccount);
-                response.sendRedirect("shop.jsp");
-            } else {
-                // loginError : 1 is wrongPassword, 2 is noAccount, 0 is nothing
-                if(WebManager.getInstance().accountDAO.isUsernameExists(username))
-                    request.setAttribute("loginError", 1);
-                else request.setAttribute("loginError", 2);
-
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                return;
             }
+            
+            if(!password.equals(repassword)){
+                
+                request.setAttribute("RegisterError", "Password does not math!");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+
+                return;
+            }
+            
+            WebManager.getInstance().accountDAO.register(username, password, fullname, email);
+            
+            response.sendRedirect("login.jsp");
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,13 +76,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -92,4 +88,5 @@ public class LoginController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

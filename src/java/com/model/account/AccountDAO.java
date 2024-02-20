@@ -24,15 +24,15 @@ import java.util.logging.Logger;
 public class AccountDAO implements DAO<Account> {
     
     // SQL queries
-    private final String LOGIN    = "SELECT [id], [role] FROM [accounts] WHERE [username] = ? AND [password] = ?";
-    private final String REGISTER = "INSERT INTO [accounts] ([username], [password], [role]) VALUES (?, ?, 0)";
+    private final String LOGIN    = "SELECT * FROM [accounts] WHERE [username] = ? AND [password] = ?";
+    private final String REGISTER = "INSERT INTO [accounts] ([username], [password], [fullname], [email], [role]) VALUES (?, ?, ?, ?, 0)";
     private final String GETALL   = "SELECT * FROM [accounts]";
     private final String GET      = "SELECT * FROM [accounts] WHERE [id] = ?";
     private final String DELETE   = "DELETE FROM [accounts] WHERE [id] = ?";
     private final String INSERT   = "INSERT INTO [accounts] ([username], [password], [role]) VALUES (?, ?, ?)";
     private final String UPDATE   = "UPDATE [accounts] SET [username] = ?, [password] = ?, [role] = ? WHERE [id] = ?";
+    private final String USERNAMEEXISTS = "SELECT * FROM [accounts] WHERE [username] = ?";
     
-    private final String USERNAMEEXISTS = "SELECT id FROM accounts WHERE username = ?";
     /**
      * Check if the provided username and password match an account in the database
      * @param username The username to check
@@ -42,7 +42,6 @@ public class AccountDAO implements DAO<Account> {
      * @throws ClassNotFoundException if the JDBC driver class is not found
      */
     public Account checkLogin(String username, String password) throws SQLException, ClassNotFoundException {
-        Account curAccount = null;
         
         try {
             Connection conn = DBUtils.getConnection();
@@ -50,31 +49,39 @@ public class AccountDAO implements DAO<Account> {
             if (conn != null) {
                 ptm.setString(1, username);
                 ptm.setString(2, password);
+                
                 ResultSet rs = ptm.executeQuery();
+                
+                if(rs.next()){
+                    Account account = new Account();
+                    account.setId(rs.getInt("id"));
+                    account.setUsername(username);
+                    account.setPassword(password);
+                    account.setFullname(rs.getString("fullname"));
+                    account.setEmail(rs.getString("email"));
+                    account.setRole(rs.getInt("id"));
                     
-                if (rs.next()) {
-                    int id = rs.getInt("id");
-                    int role = rs.getInt("role");
-                    
-                    curAccount = new Account(id, username, password, role);
+                    return account;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return curAccount;
+        return null;
     }
     
     public boolean isUsernameExists(String username){
         try{
             Connection conn = DBUtils.getConnection();
-            PreparedStatement ptm = conn.prepareStatement(LOGIN);
+            PreparedStatement ptm = conn.prepareStatement(USERNAMEEXISTS);
             if(conn != null){
                 ptm.setString(1, username);
                 ResultSet rs = ptm.executeQuery();
                 
-                if(rs.next()) return true;
+                while(rs.next()){
+                    return true;
+                }
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -83,7 +90,7 @@ public class AccountDAO implements DAO<Account> {
         return false;
     }
 
-    public Account register(String username, String password) throws ClassNotFoundException{
+    public boolean register(String username, String password, String fullname, String email) throws ClassNotFoundException{
         
         int id;
         
@@ -91,21 +98,23 @@ public class AccountDAO implements DAO<Account> {
             id = generateId();
         } while(isIdExisted(id));
         
-        Account newAccount = new Account(id, username, password, 0);
         // code to insert the new account to the database
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement stmt = conn.prepareStatement(REGISTER);
             stmt.setString(1, username);
             stmt.setString(2, password);
+            stmt.setString(3, fullname);
+            stmt.setString(4, email);
             
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-
-        return newAccount;
+        
+        return true;
     }
     
     private int generateId(){

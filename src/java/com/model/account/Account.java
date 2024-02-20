@@ -15,9 +15,21 @@ public class Account {
     private int id;
     private String username;
     private String password;
-    private int role;
     private String fullname;
-
+    private String email;
+    private int role;
+    
+    public Account(){}
+    
+    public Account(int id, String username, String password, String fullname, String email, int role) {
+        setId(id);
+        setUsername(username);
+        setPassword(password);
+        setRole(role);
+        setFullname(fullname);
+        setEmail(email);
+    }
+    
     public Account(int id, String username, String password, int role) {
         setId(id);
         setUsername(username);
@@ -63,6 +75,14 @@ public class Account {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

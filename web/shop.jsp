@@ -4,7 +4,8 @@
     Author     : kat1002
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -15,6 +16,8 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <jsp:useBean id = "bookData" class = "com.model.book.BookDAO" scope="request"></jsp:useBean>
 </head>
 
 <body>
@@ -86,276 +89,82 @@
 			<ul class="menu">
 				<li class="list-item">
 					<a class="menu-link" href="categories.html">
-						<img src="media/drums.png" alt="" /><br />Drum
+						<img src="media/vanhoc.png" alt="" /><br />Văn học
 					</a>
 				</li>
 				<li class="list-item">
 					<a class="menu-link" href="categories.html">
-						<img src="media/guitar.png" alt="" /><br />Guitar
+						<img src="media/kinhte.png" alt="" /><br />Kinh tế
 					</a>
 				</li>
 				<li class="list-item">
 					<a class="menu-link" href="categories.html">
-						<img src="media/headphone.png" alt="" /><br />Headphone
+						<img src="media/kinangsong.png" alt="" /><br />Tâm lý - Kĩ năng sống
 					</a>
 				</li>
 				<li class="list-item">
 					<a class="menu-link" href="categories.html">
-						<img src="media/microphone.png" alt="" /><br />Microphone
+						<img src="media/nuoidaycon.png" alt="" /><br />Nuôi dạy con
 					</a>
 				</li>
 				<li class="list-item">
 					<a class="menu-link" href="categories.html">
-						<img src="media/keyboard.png" alt="" /><br />Keyboard
+						<img src="media/tieusuhoiki.png" alt="" /><br />Tiểu sử - Hồi ký
 					</a>
 				</li>
 				<li class="list-item">
 					<a class="menu-link" href="categories.html">
-						<img src="media/software.png" alt="" /><br />Software
+						<img src="media/gktk.png" alt="" /><br />Giáo khoa - Tham khảo
 					</a>
 				</li>
 				<li class="list-item">
 					<a class="menu-link" href="categories.html">
-						<img src="media/speaker.png" alt="" /><br />Speaker
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/synthesizer.png" alt="" /><br />Synthesizer
+						<img src="media/nn.png" alt="" /><br />Sách học ngoại ngữ
 					</a>
 				</li>
 			</ul>
 		</div>
+                
+                        
+                
 		<p class="title">Hot Deals</p>
 		<div class="product">
 			<ul>
-				<li class="product-card">
-					<a href="product.jsp"><img src="media/images/vh1.png" alt="" /></a>
-					<a class="menu-link" href="product.jsp">ABC Black</a>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-			</ul>
+                            <c:forEach items="${bookData.random5Book}" var="book">
+                                <li class="product-card">
+                                    <a href="product?id=${book.getId()}"><img src="media/images/${bookData.getBookImageById(book.getId())[0]}" alt="" /></a>
+					<a class="menu-link" href="product?id=${book.getId()}">${book.getTitle()}</a>
+					<p class="stock">In stock: ${book.getStock()}</p>
+					<p class="price">${book.getPrice()} đ</p>
+                                </li>
+                            </c:forEach>
+			</ul>	
 		</div>
 		<p class="title">Best sellers</p>
 		<div class="product">
 			<ul>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-			</ul>
+                            <c:forEach items="${bookData.random5Book}" var="book">
+                                <li class="product-card">
+                                    <a href="product.jsp"><img src="media/images/${bookData.getBookImageById(book.getId())[0]}" alt="" /></a>
+					<a class="menu-link" href="product.jsp">${book.getTitle()}</a>
+					<p class="stock">In stock: ${book.getStock()}</p>
+					<p class="price">${book.getPrice()} đ</p>
+                                </li>
+                            </c:forEach>
+			</ul>	
 		</div>
 		<p class="title">NEW ARRIVALS</p>
 		<div class="product">
 			<ul>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-			</ul>
+                            <c:forEach items="${bookData.random5Book}" var="book">
+                                <li class="product-card">
+                                    <a href="product.jsp"><img src="media/images/${bookData.getBookImageById(book.getId())[0]}" alt="" /></a>
+					<a class="menu-link" href="product.jsp">${book.getTitle()}</a>
+					<p class="stock">In stock: ${book.getStock()}</p>
+					<p class="price">${book.getPrice()} đ</p>
+                                </li>
+                            </c:forEach>
+			</ul>	
 		</div>
 		<p class="title" id="f-ar">Featured Articles</p>
 		<div class="f-ar2">

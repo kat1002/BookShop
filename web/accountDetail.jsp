@@ -16,10 +16,6 @@
         <%@include file="header.jsp" %>
         <div>
             <h1>THÔNG TIN TÀI KHOẢN</h1>
-            <label for="last-name">Họ*</label>
-            <input type="text" name="last-name" id="last-name" placeholder="Nhập họ" required><br/>
-            <label for="first-name">Tên*</label>
-            <input type="text" name="first-name" id="first-name" placeholder="Nhập tên" required><br/>
             <label for="phone">Số điện thoại</label>
             <input type="text" name="phone" id="phone" value="${requestScope.phone}"><br/>
             <label for="email">Email</label>

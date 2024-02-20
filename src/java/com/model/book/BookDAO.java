@@ -22,13 +22,16 @@ import java.util.List;
  * @author phucnt
  */
 public class BookDAO implements DAO<Book> {
+
     // SQL queries
-    private final String GETALL   = "SELECT * FROM books";
-    private final String GET      = "SELECT * FROM books WHERE id = ?";
-    private final String DELETE   = "DELETE FROM books WHERE id = ?";
-    private final String INSERT   = "INSERT INTO books (username, password, role) VALUES (?, ?, ?)";
-    private final String UPDATE   = "UPDATE books SET title = ?, password = ?, role = ? WHERE id = ?";
-    
+    private final String GETALL = "SELECT * FROM books";
+    private final String GET = "SELECT * FROM books WHERE id = ?";
+    private final String DELETE = "DELETE FROM books WHERE id = ?";
+    private final String INSERT = "INSERT INTO books (username, password, role) VALUES (?, ?, ?)";
+    private final String UPDATE = "UPDATE books SET title = ?, password = ?, role = ? WHERE id = ?";
+    private final String GETIMAGE = "SELECT * FROM book_images WHERE book_id = ?";
+    private final String RANDOM5BOOKS = "SELECT TOP 5 * FROM books ORDER BY NEWID()";
+
     @Override
     public Book get(int id) {
         try {
@@ -36,7 +39,7 @@ public class BookDAO implements DAO<Book> {
             PreparedStatement ptm = conn.prepareStatement(GET);
             ptm.setInt(1, id);
             ResultSet rs = ptm.executeQuery();
-    
+
             if (rs.next()) {
                 int bookId = rs.getInt("id");
                 String bookTitle = rs.getString("title");
@@ -45,19 +48,41 @@ public class BookDAO implements DAO<Book> {
                 Category c = WebManager.getInstance().categoryDAO.get(rs.getInt("category_id"));
                 Author a = WebManager.getInstance().authorDAO.get(rs.getInt("author_id"));
                 Publisher p = WebManager.getInstance().publisherDAO.get(rs.getInt("publisher_id"));
-                
+
                 return new Book(bookId, bookTitle, bookPrice, bookStock, c, p, a);
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-    
+
         return null;
     }
 
     @Override
     public List<Book> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Book> list = new ArrayList<>();
+
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(GETALL);
+            ResultSet rs = ptm.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Book(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getDouble("price"),
+                        rs.getInt("stock"),
+                        WebManager.getInstance().categoryDAO.get(rs.getInt("category_id")),
+                        WebManager.getInstance().publisherDAO.get(rs.getInt("publisher_id")),
+                        WebManager.getInstance().authorDAO.get(rs.getInt("author_id"))
+                ));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
     @Override
@@ -74,11 +99,11 @@ public class BookDAO implements DAO<Book> {
     public void delete(Book t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-        // 1> List products get by Category
+
+    // 1> List products get by Category
     public List<Book> getProductsByCategoryid(int cid) throws ClassNotFoundException {
         List<Book> list = new ArrayList<>();
-        
+
         String sql = "SELECT * FROM books";
         if (cid != 0) {
             sql += " where category_id = ?";
@@ -105,7 +130,50 @@ public class BookDAO implements DAO<Book> {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
+        return list;
+    }
+
+    public List<String> getBookImageById(int id) throws ClassNotFoundException {
+        List<String> list = new ArrayList<>();
+
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement st = conn.prepareStatement(GETIMAGE);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String href = rs.getString("href");
+                list.add(href);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+    }
+    
+    public List<Book> getRandom5Book() throws ClassNotFoundException{
+        List<Book> list = new ArrayList<>();
+
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement st = conn.prepareStatement(RANDOM5BOOKS);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                list.add(new Book(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getDouble("price"),
+                        rs.getInt("stock"),
+                        WebManager.getInstance().categoryDAO.get(rs.getInt("category_id")),
+                        WebManager.getInstance().publisherDAO.get(rs.getInt("publisher_id")),
+                        WebManager.getInstance().authorDAO.get(rs.getInt("author_id"))
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
         return list;
     }
 }

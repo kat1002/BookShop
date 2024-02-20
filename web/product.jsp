@@ -20,63 +20,57 @@
     <body>
         <%@include file="header.jsp" %>	
         <main>
-		<p class="product-name content-product-h3">
-			Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered Black
-		</p>
-		<p class="star2">
-			<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-			<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-			<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-			<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-			<i class="fa-solid fa-star" style="color: #9f8a46"></i> (1)
-		</p>
 		<div class="board">
 			<div class="container">
-				<img class="imgGallery" src="media/guitar-img.webp" alt="" onclick="myFunction()" />
-				<img class="imgGallery" src="media/guitar-img2.webp" alt="" onclick="myFunction2()" />
-				<img class="imgGallery" src="media/guitar-img3.webp" alt="" onclick="myFunction3()" />
-			</div>
+                            <c:forEach items="${requestScope.images}" var="image">
+				<img class="imgGallery" src="media/images/${image}" alt="" onclick="myFunction()" />
+                            </c:forEach>
+                        </div>
 			<div class="content">
-				<div id="first1">
-					<img class="imgcontent img-prd" src="media/guitar-img.webp" />
-				</div>
-				<div id="second">
-					<img class="imgcontent" src="media/guitar-img2.webp" />
-				</div>
-				<div id="third">
-					<img class="imgcontent" src="media/guitar-img3.webp" />
-				</div>
+                            <c:forEach items="${requestScope.images}" var="image">
+                                <div id = "img">
+                                    <img class="imgcontent" src="media/images/${requestScope.image}" />
+                                </div>
+                            </c:forEach>
+				
 			</div>
 		</div>
 		<div class="row">
 			<div class="column1">
+                                <p class="product-name content-product-h3">
+                                        ${requestScope.book.getTitle()}
+                                </p>
 				<p class="product-name fix3">Details</p>
 				<table>
 					<tr>
+						<th>Category:</th>
+						<td>${requestScope.book.getCategory().getName()}</td>
+					</tr>
+					<tr>
 						<th>Publisher:</th>
-						<td>Grand Pacific</td>
+						<td>${requestScope.book.getPublisher().getName()}</td>
 					</tr>
 					<tr>
 						<th>Author:</th>
-						<td>Sitka Spruce (Top), Walnut (Body & Back)</td>
+						<td>${requestScope.book.getAuthor().getName()}</td>
+					</tr>
+					<tr>
+						<th>In stock:</th>
+						<td>${requestScope.book.getStock()}</td>
 					</tr>
 				</table>
 			</div>
 			<div class="column2">
 				<div class="background">
 					<div style="display: flex">
-						<p class="price-product" style="font-weight: 600">
-							$
-						</p>
-						<p class="price-product price">389.99</p>
+						<p class="price-product price">${requestScope.book.getPrice()} VND</p>
 					</div>
 					<p class="qty">
 						Qty:
 						<input class="qty-value" type="number" min="1" value="1" />
 					</p>
 					<button class="button-12 btn-cart" role="button">
-						<i class="fa-solid fa-cart-shopping"></i> Add to
-						Cart
+						<i class="fa-solid fa-cart-shopping"></i> Add to Cart
 					</button>
 				</div>
 				<div class="background">
