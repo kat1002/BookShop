@@ -41,13 +41,13 @@ public class Login extends HttpServlet {
             
             //System.out.println(username + " " + password);
 
-            Account userAccount = WebManager.getInstance().accountDAO.checkLogin(username, password);
+            WebManager.getInstance().CurrentAccount = WebManager.getInstance().accountDAO.checkLogin(username, password);
             
-            System.out.println(userAccount);
+            System.out.println(WebManager.getInstance().CurrentAccount);
             
-            if(userAccount != null){
+            if(WebManager.getInstance().CurrentAccount != null){
                 HttpSession session = request.getSession(false);
-                session.setAttribute("account", userAccount);
+                session.setAttribute("account", WebManager.getInstance().CurrentAccount);
                 response.sendRedirect("shop.jsp");
             } else {
                 // loginError : 1 is wrongPassword, 2 is noAccount, 0 is nothing

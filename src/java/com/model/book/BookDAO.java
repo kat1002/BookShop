@@ -30,7 +30,8 @@ public class BookDAO implements DAO<Book> {
     private final String INSERT = "INSERT INTO books (username, password, role) VALUES (?, ?, ?)";
     private final String UPDATE = "UPDATE books SET title = ?, password = ?, role = ? WHERE id = ?";
     private final String GETIMAGE = "SELECT * FROM book_images WHERE book_id = ?";
-    private final String RANDOM5BOOKS = "SELECT TOP 5 * FROM books ORDER BY NEWID()";
+    private final String RANDOMBOOKS = "SELECT TOP (?) * FROM books ORDER BY NEWID()";
+    private final String CATEGORYGET = "SELECT * FROM books WHERE category_id = ?";
 
     @Override
     public Book get(int id) {
@@ -45,10 +46,13 @@ public class BookDAO implements DAO<Book> {
                 String bookTitle = rs.getString("title");
                 double bookPrice = rs.getDouble("price");
                 int bookStock = rs.getInt("stock");
+                
+                //System.out.println(rs.getInt("author_id") + " " + rs.getInt("category_id") + " " + rs.getInt("publisher_id") + " ");
+                
                 Category c = WebManager.getInstance().categoryDAO.get(rs.getInt("category_id"));
                 Author a = WebManager.getInstance().authorDAO.get(rs.getInt("author_id"));
                 Publisher p = WebManager.getInstance().publisherDAO.get(rs.getInt("publisher_id"));
-
+                    
                 return new Book(bookId, bookTitle, bookPrice, bookStock, c, p, a);
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -153,12 +157,13 @@ public class BookDAO implements DAO<Book> {
         return list;
     }
     
-    public List<Book> getRandom5Book() throws ClassNotFoundException{
+    public List<Book> getRandomBooks(int n) throws ClassNotFoundException{
         List<Book> list = new ArrayList<>();
 
         try {
             Connection conn = DBUtils.getConnection();
-            PreparedStatement st = conn.prepareStatement(RANDOM5BOOKS);
+            PreparedStatement st = conn.prepareStatement(RANDOMBOOKS);
+            st.setInt(1, n);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 list.add(new Book(rs.getInt("id"),
@@ -171,9 +176,42 @@ public class BookDAO implements DAO<Book> {
                 ));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println("BookDAO: " + e);
         }
+        
+        //System.out.println(list);
+        
+        return list;
+    }
+    
+    public List<Book> getBookByCategory(int id) throws ClassNotFoundException{
+        List<Book> list = new ArrayList<>();
 
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm; 
+            if(id != 0) {
+                ptm = conn.prepareStatement(CATEGORYGET);
+                ptm.setInt(1, id);
+            }
+            else ptm = conn.prepareStatement(GETALL);
+            ResultSet rs = ptm.executeQuery();
+            while (rs.next()) {
+                list.add(new Book(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getDouble("price"),
+                        rs.getInt("stock"),
+                        WebManager.getInstance().categoryDAO.get(rs.getInt("category_id")),
+                        WebManager.getInstance().publisherDAO.get(rs.getInt("publisher_id")),
+                        WebManager.getInstance().authorDAO.get(rs.getInt("author_id"))
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("BookDAO: " + e);
+        }
+        
+        //System.out.println(list);
+        
         return list;
     }
 }

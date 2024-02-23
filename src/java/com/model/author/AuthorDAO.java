@@ -36,14 +36,17 @@ public class AuthorDAO implements DAO<Author> {
     public Author get(int id) {
         try {
             Connection conn = DBUtils.getConnection();
-            PreparedStatement st = conn.prepareStatement(GET);
-            ResultSet rs = st.executeQuery();
+            PreparedStatement ptm = conn.prepareStatement(GET);
+            ptm.setInt(1, id);
+
+            ResultSet rs = ptm.executeQuery();
+
             while (rs.next()) {
                 return new Author(rs.getInt("id"), 
                         rs.getString("name"));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println("AuthorDAO: " + e);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

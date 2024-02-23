@@ -93,17 +93,11 @@ CREATE TABLE [book_images] (
 )
 GO
 
-CREATE TABLE [carts] (
-	[id] INT PRIMARY KEY IDENTITY(1, 1),
-	[account_id] INT
-)
-GO
-
 CREATE TABLE [cart_items](
-	[cart_id] INT,
+	[account_id] INT,
 	[book_id] INT,
 	[amount] INT,
-	PRIMARY KEY([cart_id], [book_id])
+	PRIMARY KEY([account_id], [book_id])
 )
 GO
 
@@ -150,10 +144,7 @@ GO
 ALTER TABLE [book_images] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
-ALTER TABLE [carts] ADD FOREIGN KEY ([account_id]) REFERENCES [accounts] ([id])
-GO
-
-ALTER TABLE [cart_items] ADD FOREIGN KEY ([cart_id]) REFERENCES [carts] ([id])
+ALTER TABLE [cart_items] ADD FOREIGN KEY ([account_id]) REFERENCES [accounts] ([id])
 GO
 
 ALTER TABLE [cart_items] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])

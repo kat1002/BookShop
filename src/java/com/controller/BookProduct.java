@@ -34,10 +34,13 @@ public class BookProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
+        
         int bookId = Integer.parseInt(request.getParameter("id"));
         Book book = WebManager.getInstance().bookDAO.get(bookId);
         request.setAttribute("book", book);
         request.setAttribute("images", WebManager.getInstance().bookDAO.getBookImageById(bookId));
+        
+        //System.out.println("Product Servlet Done with id = " + bookId);
         
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }

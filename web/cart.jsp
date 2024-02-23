@@ -12,6 +12,8 @@
         <title>KAT | CART</title>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <h1>Hello World!</h1>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

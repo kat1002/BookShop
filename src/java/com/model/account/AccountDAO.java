@@ -4,7 +4,9 @@
  */
 package com.model.account;
 
+import com.controller.WebManager;
 import com.model.DAO;
+import com.model.item.Item;
 import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
@@ -32,6 +34,7 @@ public class AccountDAO implements DAO<Account> {
     private final String INSERT   = "INSERT INTO [accounts] ([username], [password], [role]) VALUES (?, ?, ?)";
     private final String UPDATE   = "UPDATE [accounts] SET [username] = ?, [password] = ?, [role] = ? WHERE [id] = ?";
     private final String USERNAMEEXISTS = "SELECT * FROM [accounts] WHERE [username] = ?";
+    private final String GETCARTITEMS = "SELECT * FROM [cart_items] WHERE [account_id] = ?";
     
     /**
      * Check if the provided username and password match an account in the database
@@ -180,8 +183,8 @@ public class AccountDAO implements DAO<Account> {
     
         try {
             Connection conn = DBUtils.getConnection();
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery(GETALL);
+            PreparedStatement ptm = conn.prepareStatement(GETALL);;
+            ResultSet rs = ptm.executeQuery();
     
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -252,6 +255,30 @@ public class AccountDAO implements DAO<Account> {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public List<Item> getCartItems(int id){
+        List<Item> list = new ArrayList<>();
+        
+        try (
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(GETCARTITEMS)) {
+            ptm.setInt(1, id); // Set the parameter value for the query
+            ResultSet rs = ptm.executeQuery();
+            
+            while(rs.next()){
+                list.add(new Item(
+                        WebManager.getInstance().bookDAO.get(rs.getInt("book_id")),
+                        rs.getInt("amount")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
     
 }

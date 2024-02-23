@@ -47,7 +47,8 @@ public class HomePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setAttribute("WebManager", WebManager.getInstance());
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
     /**

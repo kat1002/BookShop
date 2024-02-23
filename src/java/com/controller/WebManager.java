@@ -4,11 +4,13 @@
  */
 package com.controller;
 
+import com.model.account.Account;
 import com.model.category.CategoryDAO;
 import com.model.account.AccountDAO;
 import com.model.author.AuthorDAO;
 import com.model.book.BookDAO;
 import com.model.category.Category;
+import com.model.item.Item;
 import com.model.order.OrderDAO;
 import com.model.order.OrderDetailDAO;
 import com.model.publisher.PublisherDAO;
@@ -29,6 +31,9 @@ public class WebManager {
     public CategoryDAO categoryDAO;
     public AuthorDAO authorDAO;
     public PublisherDAO publisherDAO;
+    public List<Item> cartItems;
+    
+    public Account CurrentAccount;
     
     private static WebManager instance;
     
@@ -47,4 +52,70 @@ public class WebManager {
         
         return instance;
     }
+
+    public AccountDAO getAccountDAO() {
+        return accountDAO;
+    }
+
+    public void setAccountDAO(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
+    }
+
+    public BookDAO getBookDAO() {
+        return bookDAO;
+    }
+
+    public void setBookDAO(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
+    }
+
+    public OrderDAO getOrderDAO() {
+        return orderDAO;
+    }
+
+    public void setOrderDAO(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
+    }
+
+    public OrderDetailDAO getOrderDetailDAO() {
+        return orderDetailDAO;
+    }
+
+    public void setOrderDetailDAO(OrderDetailDAO orderDetailDAO) {
+        this.orderDetailDAO = orderDetailDAO;
+    }
+
+    public CategoryDAO getCategoryDAO() {
+        return categoryDAO;
+    }
+
+    public void setCategoryDAO(CategoryDAO categoryDAO) {
+        this.categoryDAO = categoryDAO;
+    }
+
+    public AuthorDAO getAuthorDAO() {
+        return authorDAO;
+    }
+
+    public void setAuthorDAO(AuthorDAO authorDAO) {
+        this.authorDAO = authorDAO;
+    }
+
+    public PublisherDAO getPublisherDAO() {
+        return publisherDAO;
+    }
+
+    public void setPublisherDAO(PublisherDAO publisherDAO) {
+        this.publisherDAO = publisherDAO;
+    }
+
+    public List<Item> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<Item> cartItems) {
+        this.cartItems = cartItems;
+    }
+    
+    
 }

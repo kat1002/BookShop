@@ -25,7 +25,7 @@ public class CategoryDAO implements DAO<Category>{
 
     //SQL Queries
     private final String GET        = "SELECT * FROM [categories] WHERE [id] = ?";
-    private final String GETALL     = "SELECT [id], [title] FROM [categories]";
+    private final String GETALL     = "SELECT * FROM [categories]";
     private final String DELETE     = "DELETE FROM [categories] WHERE [id] = ?";
     private final String INSERT     = "INSERT INTO [categories] ([title]) VALUES (?)";
     private final String UPDATE     = "UPDATE [categories] SET [title] = ? WHERE [id] = ?";
@@ -35,8 +35,9 @@ public class CategoryDAO implements DAO<Category>{
     public Category get(int id) {
         try {
             Connection conn = DBUtils.getConnection();
-            PreparedStatement st = conn.prepareStatement(GET);
-            ResultSet rs = st.executeQuery();
+            PreparedStatement ptm = conn.prepareStatement(GET);
+            ptm.setInt(1, id);
+            ResultSet rs = ptm.executeQuery();
             while (rs.next()) {
                 return new Category(rs.getInt("id"), rs.getString("title"));
             }
@@ -59,8 +60,8 @@ public class CategoryDAO implements DAO<Category>{
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Category c = new Category();
-                c.setId(rs.getInt("CategoryID"));
-                c.setTitle(rs.getString("CategoryName"));
+                c.setId(rs.getInt("id"));
+                c.setTitle(rs.getString("title"));
                 list.add(c);
             }
         } catch (SQLException e) {
@@ -68,6 +69,8 @@ public class CategoryDAO implements DAO<Category>{
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        System.out.println("CategoryDAO: " + list);
 
         return list;
     }

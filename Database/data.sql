@@ -78,3 +78,6 @@ VALUES
     (N'gk2.png', 14),
     (N'nn1.png', 15),
     (N'nn2.png', 16);
+
+	INSERT INTO [accounts] VALUES
+	(N'kat1002',N'123',1,'','');

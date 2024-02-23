@@ -9,38 +9,69 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>KAT | REGISTER</title>
+                <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+             <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+            <title>KAT | REGISTER</title>
+
+            <!-- Google font -->
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+            <!-- Bootstrap -->
+            <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+            <!-- Slick -->
+            <link type="text/css" rel="stylesheet" href="css/slick.css"/>
+            <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+            <!-- nouislider -->
+            <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	
+            <!-- Font Awesome Icon -->
+            <link rel="stylesheet" href="css/font-awesome.min.css">
+
+            <!-- Custom stlylesheet -->
+            <link type="text/css" rel="stylesheet" href="css/style.css"/>
+            <link rel="stylesheet" href="css/login.css"/>
+
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
     </head>
     <body>
         <%@include file="header.jsp" %>
 
         <div>
+           
+                <div class="form">
+                        <h1>Create account</h1>
+                        <form class="register-form" action="register" method="post">
+                            <div class="text-warning">${requestScope.RegisterError}</div>
+                        <div> First name </div>    
+                        <input type="text" placeholder="First name" name="firstName" required=""/>
+                        <div> Last name </div>   
+                        <input type="text" placeholder="Last name" name="lastName" required/>
+                        <div> Username </div>   
+                        <input type="text" placeholder="Enter your username" name="username" required/>
+                        <div> Password </div>   
+                        <input type="password" placeholder="Enter your Password" name="password" required=""/>
+                        <div> Re-enter password </div>   
+                        <input type="password" placeholder="Re-Enter your password" name="repassword" required/>
+                        <div> Email </div>   
+                        <input type="text" name="email" id="email" placeholder="Enter your email" required><br/>
 
-            <div>
-                <h1>Register Page</h1>
-                <h1><a href="<c:url value="/login.jsp"/>">Login</a></h1>
-            </div>
-
-            <form action = "register" method = "post">
-                <label for="user">Username</label><br/>
-                <input type="text" name="username" id = "username" placeholder="Enter username" required autofocus> <br/>
-                <label for="user">Password</label><br/>
-                <input type="password" name="password" id="password" placeholder="Enter password" required><br/>
-                <label for="user">Re-enter Password</label><br/>
-                <input type="password" name="repassword" id="repassword" placeholder="Re-Enter password" required><br/>
-                <label for="user">Fullname</label><br/>
-                <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname" required><br/>
-                <label for="user">Email</label><br/>
-                <input type="text" name="email" id="email" placeholder="Enter your email" required><br/>
-                <button type="submit">Register</button>
-                
-                <c:if test="${requestScope.RegisterError != null}">
-                    ${requestScope.RegisterError}
-                </c:if>
-            </form>
-
-        </div>
+                        <button>create</button>
+                    </form>
+                            
+                            Already have account? <a href="login.jsp"> Login here! </a>
+                </div>
 
         <%@include file="footer.jsp" %>
     </body>
