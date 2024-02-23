@@ -58,7 +58,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class><a href="shop.jsp">Home</a></li>
+						<li class><a href="shop">Home</a></li>
 						<li><a href="#">Hot Deals</a></li>
 						<li class="active"><a href="categories?categoryId=0">Categories</a></li>
 					</ul>

@@ -4,7 +4,12 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>controller.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Shop</servlet-name>
+        <servlet-class>controller.HomePage</servlet-class>
+        <url-pattern>/shop</url-pattern>
+    </servlet>
     <welcome-file-list>
-        <welcome-file>shop.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

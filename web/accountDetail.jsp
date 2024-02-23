@@ -8,44 +8,89 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+             <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+            <title>KAT | LOGIN</title>
+
+            <!-- Google font -->
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+            <!-- Bootstrap -->
+            <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+            <!-- Slick -->
+            <link type="text/css" rel="stylesheet" href="css/slick.css"/>
+            <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+            <!-- nouislider -->
+            <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	
+            <!-- Font Awesome Icon -->
+            <link rel="stylesheet" href="css/font-awesome.min.css">
+
+            <!-- Custom stlylesheet -->
+            <link type="text/css" rel="stylesheet" href="css/style.css"/>
+            <link rel="stylesheet" href="css/login.css"/>
+
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+
+
     </head>
     <body>
         
         <%@include file="header.jsp" %>
-        <div>
-            <h1>THÔNG TIN TÀI KHOẢN</h1>
-            <label for="phone">Số điện thoại</label>
-            <input type="text" name="phone" id="phone" value="${requestScope.phone}"><br/>
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Chưa có email"><br/>
-            Giới tính* <label>
-                <input type="radio" name="gender" value="male" required> Nam
-            </label>
-            <label>
-                <input type="radio" name="gender" value="female"> Nữ
-            </label><br/>
-            <label for="birthday">Birthday*</label>
-        <input type="date" id="birthday" name="birthday" required><br/>
         
-        <label for="changePassword">Đổi mật khẩu</label>
-        <input type="checkbox" id="changePassword" name="changePassword" onclick="togglePasswordSection()">
-        
-        <div class="password-section" style="display: none">
-            <label for="currentPassword">Mật khẩu hiện tại*</label>
-            <input type="password" id="currentPassword" name="currentPassword" placeholder="Mật khẩu hiện tại*">
+        <div class="form">
             
-            <label for="newPassword">Mật khẩu mới*</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Mật khẩu mới*">
-            
-            <label for="confirmPassword">Nhập lại mật khẩu mới*</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu mới*">
-        </div>
+                <h1>THÔNG TIN TÀI KHOẢN</h1>
+                <form class="login-form" action = "update" method="post">
+                            <div class="login__field">
+                                <i class="login__icon fas fa-user"> Username: </i> <a>${sessionScope.account.getUsername()}</a> 
+                            </div>
+                            <div class="login__field">
+                                <i class="login__icon fas fa-user"> Fullname: </i> <a>${sessionScope.account.getFullname()}</a>
+                            </div>
+                            <div class="login__field">
+                                <i class="login__icon fas fa-user"> Email: </i> <a>${sessionScope.account.getEmail()}</a> 
+                            </div>
+                            
+                            <button class="button login__submit">
+                                    <span class="button__text">Update</span>
+                                    <i class="button__icon fas fa-chevron-right"></i>
+                            </button>				
+                </form>
+                            
+                <form class="login-form" action = "logout" method="post">            
+                            <button class="button login__submit">
+                                    <span class="button__text">Logout</span>
+                                    <i class="button__icon fas fa-chevron-right"></i>
+                            </button>				
+                </form>
+
+
+<!--                            <div class="social-login">
+                            <h3>log in via</h3>
+                            <div class="social-icons">
+                                    <a href="#" class="social-login__icon fab fa-instagram"></a>
+                                    <a href="#" class="social-login__icon fab fa-facebook"></a>
+                                    <a href="#" class="social-login__icon fab fa-twitter"></a>
+                            </div>
+                    </div>-->
+            </div>
+                
+                
         
-        <div>
-            <button type="submit">Lưu thay đổi</button>
-        </div>
+        
         
         <script>
             function togglePasswordSection() {

@@ -9,6 +9,7 @@ import com.model.category.CategoryDAO;
 import com.model.account.AccountDAO;
 import com.model.author.AuthorDAO;
 import com.model.book.BookDAO;
+import com.model.cart.Cart;
 import com.model.category.Category;
 import com.model.item.Item;
 import com.model.order.OrderDAO;
@@ -31,7 +32,7 @@ public class WebManager {
     public CategoryDAO categoryDAO;
     public AuthorDAO authorDAO;
     public PublisherDAO publisherDAO;
-    public List<Item> cartItems;
+    public Cart cart;
     
     public Account CurrentAccount;
     
@@ -109,13 +110,19 @@ public class WebManager {
         this.publisherDAO = publisherDAO;
     }
 
-    public List<Item> getCartItems() {
-        return cartItems;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setCartItems(List<Item> cartItems) {
-        this.cartItems = cartItems;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
-    
-    
+
+    public Account getCurrentAccount() {
+        return CurrentAccount;
+    }
+
+    public void setCurrentAccount(Account CurrentAccount) {
+        this.CurrentAccount = CurrentAccount;
+    }
 }
