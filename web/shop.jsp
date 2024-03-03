@@ -122,7 +122,7 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                                                                            <button id="add-to-cart" class="add-to-cart-btn" onclick="location.href = 'cartInsert?method=insert&link=shop&bookid=${book.getId()}&qty=1'"><i class="fa fa-shopping-cart"></i> add to cart</button>
 											</div>
 										</div>
 										<!-- /product -->
@@ -190,17 +190,15 @@
 												<p>${book.getAuthor().getName()}</p>
 												<h4 class="product-price">${book.getPrice()} VND </h4>
 												<div class="product-btns">
-<!--													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>-->
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+												<<button id="add-to-cart" class="add-to-cart-btn" onclick="location.href = 'cartInsert?method=insert&link=shop&bookid=${book.getId()}&qty=1'"><i class="fa fa-shopping-cart"></i> add to cart</button>
 											</div>
 										</div>
 										<!-- /product -->
-                                                                            </c:forEach>
+                                                                        </c:forEach>
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>
@@ -324,8 +322,8 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-5">
 							<div>
-                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
-                                                                <!-- product widget -->
+								<c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
+								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
 										<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="60px" height="60px" alt="">

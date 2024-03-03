@@ -5,6 +5,7 @@
 package com.controller;
 
 import com.model.book.Book;
+import com.model.item.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,17 +13,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author kat1002
  */
-@WebServlet(name = "Categories", urlPatterns = {"/categories"})
-public class Categories extends HttpServlet {
+@WebServlet(name = "CartInsert", urlPatterns = {"/cartInsert"})
+public class CartInsert extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,26 +31,36 @@ public class Categories extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        List<Book> list = new ArrayList<>();
-        
-        String method = request.getParameter("method");
-        if(method == "search"){
-            list = WebManager.getInstance().bookDAO.search(request.getParameter("str"));
-        }
-        else{
-            int id = Integer.parseInt(request.getParameter("categoryId"));
+        if(WebManager.getInstance().CurrentAccount != null){
+            String method = request.getParameter("method");
 
-            if(id == 0) list = WebManager.getInstance().bookDAO.getAll();
-            else list = WebManager.getInstance().bookDAO.getBookByCategory(id);
-            request.setAttribute("categoryId", id);
+            Book book = WebManager.getInstance().bookDAO.get(Integer.parseInt(request.getParameter("bookid")));
+            Item item = new Item(book, Integer.parseInt(request.getParameter("qty")));
+
+            //System.out.println(method + " " + request.getParameter("bookid") + " " + request.getParameter("qty"));
+            System.out.println(book.getTitle());
+
+
+            if(method.equals("insert")) {
+                WebManager.getInstance().cart.addItem(item);
+            }
+
+            if(method.equals("remove")){
+                WebManager.getInstance().cart.removeItem(item);
+            }
+
+            if(method.equals("change")){
+                WebManager.getInstance().cart.changeItem(item);
+            }
+
+            System.out.println(WebManager.getInstance().cart.getItems());
+
+            response.sendRedirect(request.getParameter("link"));
         }
-        
-        request.setAttribute("list", list);
-        request.setAttribute("WebManager", WebManager.getInstance());
-        request.getRequestDispatcher("category.jsp").forward(request, response);
+        else response.sendRedirect("login.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,11 +75,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -86,11 +89,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

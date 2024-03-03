@@ -32,6 +32,7 @@ public class BookDAO implements DAO<Book> {
     private final String GETIMAGE = "SELECT * FROM book_images WHERE book_id = ?";
     private final String RANDOMBOOKS = "SELECT TOP (?) * FROM books ORDER BY NEWID()";
     private final String CATEGORYGET = "SELECT * FROM books WHERE category_id = ?";
+    private final String SEARCH = "SELECT * FROM books WHERE title LIKE '%?%'";
 
     @Override
     public Book get(int id) {
@@ -195,6 +196,34 @@ public class BookDAO implements DAO<Book> {
                 ptm.setInt(1, id);
             }
             else ptm = conn.prepareStatement(GETALL);
+            ResultSet rs = ptm.executeQuery();
+            while (rs.next()) {
+                list.add(new Book(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getDouble("price"),
+                        rs.getInt("stock"),
+                        WebManager.getInstance().categoryDAO.get(rs.getInt("category_id")),
+                        WebManager.getInstance().publisherDAO.get(rs.getInt("publisher_id")),
+                        WebManager.getInstance().authorDAO.get(rs.getInt("author_id"))
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("BookDAO: " + e);
+        }
+        
+        //System.out.println(list);
+        
+        return list;
+    }
+    
+    public List<Book> search(String str) throws ClassNotFoundException{
+        List<Book> list = new ArrayList<>();
+
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm; 
+            ptm = conn.prepareStatement(SEARCH);
+            ptm.setString(1, str);
             ResultSet rs = ptm.executeQuery();
             while (rs.next()) {
                 list.add(new Book(rs.getInt("id"),

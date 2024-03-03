@@ -62,7 +62,7 @@ public class AccountDAO implements DAO<Account> {
                     account.setPassword(password);
                     account.setFullname(rs.getString("fullname"));
                     account.setEmail(rs.getString("email"));
-                    account.setRole(rs.getInt("id"));
+                    account.setRole(rs.getInt("role"));
                     
                     return account;
                 }

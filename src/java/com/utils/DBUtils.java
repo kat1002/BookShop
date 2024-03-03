@@ -27,7 +27,7 @@ public class DBUtils {
         
         Connection conn = null;
         
-        System.out.println("Connect DB...");
+        //System.out.println("Connect DB...");
         
         try{
 //            //Loading driver
@@ -42,7 +42,7 @@ public class DBUtils {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(urll, username, password);
             
-            System.out.println(conn);
+            //System.out.println(conn);
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Error: " +  ex.toString());
             //throw new SQLException(ex.getMessage());

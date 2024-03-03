@@ -58,6 +58,7 @@ public class ItemDAO implements DAO<Item> {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ptm = conn.prepareStatement(GETALL);
             ptm.setInt(1, WebManager.getInstance().CurrentAccount.getId());
+            System.out.println(WebManager.getInstance().CurrentAccount.getId());
             ResultSet rs = ptm.executeQuery();
 
             if (rs.next()) {

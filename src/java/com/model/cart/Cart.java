@@ -4,7 +4,9 @@
  */
 package com.model.cart;
 
+import com.controller.WebManager;
 import com.model.item.Item;
+import com.model.item.ItemDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Cart {
     }
     
     public List<Item> getItems() {
-        return items;
+        return WebManager.getInstance().itemDAO.getAll();
     }
 
     public void setItems(List<Item> items) {
@@ -27,19 +29,50 @@ public class Cart {
     }
     
     public void addItem(Item i){
+        items = getItems();
+        ItemDAO itemDAO = WebManager.getInstance().itemDAO;
+        
+        System.out.println("CART: " + items);
+        
         for(int j = 0; j < items.size(); ++j){
-            if(i.getBook() == items.get(j).getBook()){
+            if(i.getBook().getId() == items.get(j).getBook().getId()){
+                Item item = items.get(j);
                 items.get(j).setAmount(items.get(j).getAmount() + i.getAmount());
+                
+                String[] params = new String[3];
+                itemDAO.update(items.get(j), params);
                 return;
             }
         }
         
+        System.out.println("Insert: " + i.getBook().getTitle() + "|" + i.getAmount() + " into cart");
+        
         items.add(i);
+        itemDAO.insert(i);
     }
     
     public void removeItem(Item i){
-        items.remove(i);
+        for(int j = 0; j < items.size(); ++j){
+            if(i.getBook().getId() == items.get(j).getBook().getId()){
+                items.get(j).setAmount(items.get(j).getAmount() - i.getAmount());
+                if(items.get(j).getAmount() <= 0) items.remove(j);
+                return;
+            }
+        }
     }
     
+    public void changeItem(Item i){
+        for(int j = 0; j < items.size(); ++j){
+            if(i.getBook().getId() == items.get(j).getBook().getId()){
+                items.get(j).setAmount(items.get(j).getAmount() + i.getAmount());
+                if(items.get(j).getAmount() <= 0) items.remove(j);
+                return;
+            }
+        }
+    }
+    
+    public void clearCart(){
+        
+    }
     
 }

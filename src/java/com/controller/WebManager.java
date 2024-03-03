@@ -12,6 +12,7 @@ import com.model.book.BookDAO;
 import com.model.cart.Cart;
 import com.model.category.Category;
 import com.model.item.Item;
+import com.model.item.ItemDAO;
 import com.model.order.OrderDAO;
 import com.model.order.OrderDetailDAO;
 import com.model.publisher.PublisherDAO;
@@ -32,6 +33,7 @@ public class WebManager {
     public CategoryDAO categoryDAO;
     public AuthorDAO authorDAO;
     public PublisherDAO publisherDAO;
+    public ItemDAO itemDAO;
     public Cart cart;
     
     public Account CurrentAccount;
@@ -46,6 +48,8 @@ public class WebManager {
         categoryDAO = new CategoryDAO();
         authorDAO = new AuthorDAO();
         publisherDAO = new PublisherDAO();
+        itemDAO = new ItemDAO();
+        cart = new Cart();
     }
     
     public static WebManager getInstance(){

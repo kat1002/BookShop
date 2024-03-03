@@ -131,8 +131,8 @@
 							</div>
 						</div>
 						<!-- /aside Widget -->
-
-						<!-- aside Widget -->
+<!--
+						 aside Widget 
 						<div class="aside">
 							<h3 class="aside-title">Price</h3>
 							<div class="price-filter">
@@ -150,7 +150,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- /aside Widget -->
+						 /aside Widget -->
 					</div>
 					<!-- /ASIDE -->
 
@@ -209,7 +209,7 @@
 										</div>
 									</div>
 									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										<button id="add-to-cart" class="add-to-cart-btn" onclick="location.href = 'cartInsert?method=insert&link=categories?categoryId=${requestScope.categoryId}&bookid=${book.getId()}&qty=1'"><i class="fa fa-shopping-cart"></i> add to cart</button>
 									</div>
 								</div>
 							</div>

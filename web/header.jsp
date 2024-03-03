@@ -62,8 +62,14 @@
                                     <c:if test="${sessionScope.account == null}">
                                         <li><a href="login.jsp"><i class="fa fa-user-o"></i> Login</a></li> 
                                     </c:if>
+                                        
                                     <c:if test="${sessionScope.account != null}">
-                                        <li><a href="accountDetail.jsp"><i class="fa fa-user-o"></i> ${sessionScope.account.getUsername()}</a></li> 
+                                        <c:if test="${sessionScope.account.getRole() == 1}">
+                                            <li><a href="index.html"><i class="fa fa-user-o"></i> ${sessionScope.account.getUsername()}: Admin</a></li> 
+                                        </c:if>  
+                                        <c:if test="${sessionScope.account.getRole() == 0}">
+                                            <li><a href="accountDetail.jsp"><i class="fa fa-user-o"></i> ${sessionScope.account.getUsername()}</a></li> 
+                                        </c:if>
                                     </c:if>
                             </ul>
                     </div>
@@ -92,16 +98,16 @@
                                                     <form action="search" metthod="post">
                                                             <select class="input-select">
                                                                     <option value="0">All Categories</option>
-<!--                                                                    <option value="1">Văn Học</option>
+                                                                    <option value="1">Văn Học</option>
                                                                     <option value="2">Kinh Tế</option>
                                                                     <option value="3">Tâm Lý - KNS</option>
                                                                     <option value="4">Nuôi Dạy Con</option>
                                                                     <option value="5">Sách Thiếu Nhi</option>
                                                                     <option value="6">Tiểu Sử - Hồi Ký</option>
                                                                     <option value="7">Giáo Khoa</option>
-                                                                    <option value="8">Ngoại Ngữ</option>-->
+                                                                    <option value="8">Ngoại Ngữ</option>
                                                             </select>
-                                                            <input class="input" placeholder="Search here">
+                                                            <input class="input" id="searchInput" name="searchInput" placeholder="Search here">
                                                             <button class="search-btn">Search</button>
                                                     </form>
                                             </div>
@@ -123,7 +129,7 @@
 
                                                     <!-- Cart -->
                                                     <div class="dropdown">
-                                                            <a class="dropdown-toggle" href="cart.jsp">
+                                                            <a class="dropdown-toggle" href="cart">
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                     <span`>Your Cart</span>
                                                             </a>

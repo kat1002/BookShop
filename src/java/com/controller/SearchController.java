@@ -4,7 +4,6 @@
  */
 package com.controller;
 
-import com.model.book.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,17 +11,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author kat1002
  */
-@WebServlet(name = "Categories", urlPatterns = {"/categories"})
-public class Categories extends HttpServlet {
+@WebServlet(name = "SearchController", urlPatterns = {"/search"})
+public class SearchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,26 +29,13 @@ public class Categories extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        List<Book> list = new ArrayList<>();
+        request.setAttribute("method", "search");
+        request.setAttribute("str", request.getParameter("searchInput"));
         
-        String method = request.getParameter("method");
-        if(method == "search"){
-            list = WebManager.getInstance().bookDAO.search(request.getParameter("str"));
-        }
-        else{
-            int id = Integer.parseInt(request.getParameter("categoryId"));
-
-            if(id == 0) list = WebManager.getInstance().bookDAO.getAll();
-            else list = WebManager.getInstance().bookDAO.getBookByCategory(id);
-            request.setAttribute("categoryId", id);
-        }
-        
-        request.setAttribute("list", list);
-        request.setAttribute("WebManager", WebManager.getInstance());
-        request.getRequestDispatcher("category.jsp").forward(request, response);
+        response.sendRedirect("categories?method='search'&str='" + request.getParameter("searchInput") + "'");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,11 +50,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -86,11 +64,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
