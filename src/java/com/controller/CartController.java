@@ -34,14 +34,13 @@ public class CartController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        if(WebManager.getInstance().CurrentAccount == null){
-            response.sendRedirect("login.jsp");
+        if(WebManager.getInstance().CurrentAccount != null){
+            List<Item> list = WebManager.getInstance().cart.getItems();
+            request.setAttribute("items", list);
+            request.setAttribute("WebManager", WebManager.getInstance());
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
         }
-        
-        List<Item> list = WebManager.getInstance().cart.getItems();
-        request.setAttribute("items", list);
-        request.setAttribute("WebManager", WebManager.getInstance());
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        else response.sendRedirect("login.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

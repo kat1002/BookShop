@@ -238,8 +238,7 @@
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
-								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<button id="add-to-cart" class="add-to-cart-btn" onclick="location.href = 'cartInsert?method=insert&link=product?id=${book.getId()}&bookid=${book.getId()}&qty=1'"><i class="fa fa-shopping-cart"></i> add to cart</button>
 							</div>
 
 							<ul class="product-links">

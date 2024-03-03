@@ -40,7 +40,9 @@ public class Categories extends HttpServlet {
         List<Book> list = new ArrayList<>();
         
         String method = request.getParameter("method");
-        if(method == "search"){
+        if(method == null) method = "view";
+        
+        if(method.equals("search")){
             list = WebManager.getInstance().bookDAO.search(request.getParameter("str"));
         }
         else{

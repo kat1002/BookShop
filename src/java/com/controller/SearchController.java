@@ -35,7 +35,7 @@ public class SearchController extends HttpServlet {
         request.setAttribute("method", "search");
         request.setAttribute("str", request.getParameter("searchInput"));
         
-        response.sendRedirect("categories?method='search'&str='" + request.getParameter("searchInput") + "'");
+        response.sendRedirect("categories?method=search&str=" + request.getParameter("searchInput"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

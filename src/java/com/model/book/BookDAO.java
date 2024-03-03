@@ -32,7 +32,7 @@ public class BookDAO implements DAO<Book> {
     private final String GETIMAGE = "SELECT * FROM book_images WHERE book_id = ?";
     private final String RANDOMBOOKS = "SELECT TOP (?) * FROM books ORDER BY NEWID()";
     private final String CATEGORYGET = "SELECT * FROM books WHERE category_id = ?";
-    private final String SEARCH = "SELECT * FROM books WHERE title LIKE '%?%'";
+    private final String SEARCH = "SELECT * FROM books WHERE title LIKE ";
 
     @Override
     public Book get(int id) {
@@ -222,8 +222,7 @@ public class BookDAO implements DAO<Book> {
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ptm; 
-            ptm = conn.prepareStatement(SEARCH);
-            ptm.setString(1, str);
+            ptm = conn.prepareStatement(SEARCH + "'%" + str + "%'");
             ResultSet rs = ptm.executeQuery();
             while (rs.next()) {
                 list.add(new Book(rs.getInt("id"),
@@ -236,7 +235,7 @@ public class BookDAO implements DAO<Book> {
                 ));
             }
         } catch (SQLException e) {
-            System.out.println("BookDAO: " + e);
+            System.out.println("BookDAO | Search: " + e);
         }
         
         //System.out.println(list);

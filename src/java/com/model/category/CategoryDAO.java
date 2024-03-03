@@ -70,7 +70,7 @@ public class CategoryDAO implements DAO<Category>{
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        System.out.println("CategoryDAO: " + list);
+        //System.out.println("CategoryDAO: " + list);
 
         return list;
     }
