@@ -58,14 +58,14 @@
                                     <li><a href="#"><i class="fa fa-map-marker"></i> FPT University</a></li>
                             </ul>
                             <ul class="header-links pull-right">
-                                    <li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
+                                    <li><a href="#"><i class="fa fa-dollar"></i> $</a></li>
                                     <c:if test="${sessionScope.account == null}">
                                         <li><a href="login.jsp"><i class="fa fa-user-o"></i> Login</a></li> 
                                     </c:if>
                                         
                                     <c:if test="${sessionScope.account != null}">
                                         <c:if test="${sessionScope.account.getRole() == 1}">
-                                            <li><a href="index.html"><i class="fa fa-user-o"></i> ${sessionScope.account.getUsername()}: Admin</a></li> 
+                                            <li><a href="admin"><i class="fa fa-user-o"></i> ${sessionScope.account.getUsername()}: Admin</a></li> 
                                         </c:if>  
                                         <c:if test="${sessionScope.account.getRole() == 0}">
                                             <li><a href="accountDetail.jsp"><i class="fa fa-user-o"></i> ${sessionScope.account.getUsername()}</a></li> 
@@ -96,7 +96,7 @@
                                     <div class="col-md-6">
                                             <div class="header-search">
                                                     <form action="search" metthod="post">
-                                                            <select class="input-select">
+<!--                                                            <select class="input-select">
                                                                     <option value="0">All Categories</option>
                                                                     <option value="1">Văn Học</option>
                                                                     <option value="2">Kinh Tế</option>
@@ -106,7 +106,7 @@
                                                                     <option value="6">Tiểu Sử - Hồi Ký</option>
                                                                     <option value="7">Giáo Khoa</option>
                                                                     <option value="8">Ngoại Ngữ</option>
-                                                            </select>
+                                                            </select>-->
                                                             <input class="input" id="searchInput" name="searchInput" placeholder="Search here">
                                                             <button class="search-btn">Search</button>
                                                     </form>
@@ -117,15 +117,6 @@
                                     <!-- ACCOUNT -->
                                     <div class="col-md-3 clearfix">
                                             <div class="header-ctn">
-<!--                                                     Wishlist 
-                                                    <div>
-                                                            <a href="#">
-                                                                    <i class="fa fa-heart-o"></i>
-                                                                    <span>Your Wishlist</span>
-                                                                    <div class="qty">2</div>
-                                                            </a>
-                                                    </div>
-                                                     /Wishlist -->
 
                                                     <!-- Cart -->
                                                     <div class="dropdown">
@@ -156,58 +147,4 @@
     </header>
     <!-- /HEADER -->
     
-<!--    <header>
-		<div class="row-menu1">
-			<ul class="menu">
-				<li class="menu-item">
-                                    <a href = "cart.jsp">
-					<button class="open-button menu-link" onclick="">
-						<i class="fa-solid fa-cart-shopping"></i> My Cart
-					</button>
-                                    </a>
-				</li>
-				<li>
-                                        <c:if test = "${sessionScope.account == null}">
-                                            <a href="login.jsp">
-						<button class="open-button menu-link" onclick="">
-							<i class="fa-solid fa-user"></i> Login
-						</button>
-                                            </a>
-                                        </c:if>
-                                        <c:if test = "${sessionScope.account != null}">
-                                            <a href="accountDetail.jsp">
-						<button class="open-button menu-link" onclick="">
-							<i class="fa-solid fa-user"></i> ${sessionScope.account.getUsername()}
-						</button>
-                                            </a>
-                                        </c:if>
-				</li>
-			</ul>
-			
-		</div>
-		<div class="row-menu2">
-			<a href="shop.jsp"><img class="logo" src="media/LOGO.png" alt="logo" /></a>
-			<ul class="menu">
-				<li class="menu-item">
-					<a class="menu-link" href="shop.jsp">HOME</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="contact.jsp">CONTACT</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="faq.jsp">HELP / FAQ</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="category.jsp">CATEGORIES</a>
-				</li>
-				<li class="menu-item">
-					<a class="menu-link" href="about.jsp">ABOUT US</a>
-				</li>
-			</ul>
-			<form class="search-button">
-				<input type="text" placeholder="Search..." />
-				<button><i class="fa fa-search"></i></button>
-			</form>
-		</div>
-	</header>-->
 </html>

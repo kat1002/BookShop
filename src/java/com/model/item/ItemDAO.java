@@ -6,6 +6,7 @@ package com.model.item;
 
 import com.controller.WebManager;
 import com.model.DAO;
+import com.model.account.Account;
 import com.model.author.Author;
 import com.model.book.Book;
 import com.model.category.Category;
@@ -30,6 +31,7 @@ public class ItemDAO implements DAO<Item> {
     private final String DELETE   = "DELETE FROM [cart_items] WHERE [account_id] = ? AND [book_id] = ?";
     private final String INSERT   = "INSERT INTO [cart_items] VALUES (?, ?, ?)";
     private final String UPDATE   = "UPDATE [cart_items] SET [amount] = ? WHERE [account_id] = ? AND [book_id] = ?";
+    private final String CLEARCART = "DELETE FROM [cart_items] WHERE [account_id] = ?";
     
     @Override
     public Item get(int id) {
@@ -68,7 +70,7 @@ public class ItemDAO implements DAO<Item> {
             e.printStackTrace();
         }
         
-        System.out.println(list);
+        //System.out.println(list);
         
         return list;
     }
@@ -106,12 +108,22 @@ public class ItemDAO implements DAO<Item> {
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ptm = conn.prepareStatement(DELETE);
-            ptm.setInt(2, WebManager.getInstance().CurrentAccount.getId());
-            ptm.setInt(3, t.book.getId());
+            ptm.setInt(1, WebManager.getInstance().CurrentAccount.getId());
+            ptm.setInt(2, t.book.getId());
             ptm.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
     
+    public void clearCart(){
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(CLEARCART);
+            ptm.setInt(1, WebManager.getInstance().CurrentAccount.getId());
+            ptm.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

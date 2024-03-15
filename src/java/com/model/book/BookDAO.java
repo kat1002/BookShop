@@ -26,9 +26,11 @@ public class BookDAO implements DAO<Book> {
     // SQL queries
     private final String GETALL = "SELECT * FROM books";
     private final String GET = "SELECT * FROM books WHERE id = ?";
+    private final String DELETEINIMAGE = "DELETE FROM book_images WHERE book_id = ?";
+    private final String DELETEINITEMS = "DELETE FROM cart_items WHERE book_id = ?";
     private final String DELETE = "DELETE FROM books WHERE id = ?";
-    private final String INSERT = "INSERT INTO books (username, password, role) VALUES (?, ?, ?)";
-    private final String UPDATE = "UPDATE books SET title = ?, password = ?, role = ? WHERE id = ?";
+    private final String INSERT = "INSERT INTO books VALUES (?, ?, 100, ?, ?, ?)";
+    private final String UPDATE = "UPDATE books SET title = ?, category_id = ?, price = ? WHERE id = ?";
     private final String GETIMAGE = "SELECT * FROM book_images WHERE book_id = ?";
     private final String RANDOMBOOKS = "SELECT TOP (?) * FROM books ORDER BY NEWID()";
     private final String CATEGORYGET = "SELECT * FROM books WHERE category_id = ?";
@@ -92,17 +94,53 @@ public class BookDAO implements DAO<Book> {
 
     @Override
     public void insert(Book t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(INSERT);
+            ptm.setString(1, t.getTitle());
+            ptm.setDouble(2, t.getPrice());
+            ptm.setInt(3, t.getCategory().getId());
+            ptm.setInt(4, t.getPublisher().getId());
+            ptm.setInt(5, t.getAuthor().getId());
+            ptm.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }    }
 
     @Override
     public void update(Book t, String[] params) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(UPDATE);
+            ptm.setString(1, params[0]);
+            ptm.setInt(2, Integer.parseInt(params[1]));
+            ptm.setDouble(3, Double.parseDouble(params[2]));
+            ptm.setInt(4, t.getId());
+            ptm.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void delete(Book t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(DELETEINIMAGE);
+            ptm.setInt(1, t.getId());
+            ptm.executeUpdate();
+            
+            ptm = conn.prepareStatement(DELETEINITEMS);
+            ptm.setInt(1, t.getId());
+            ptm.executeUpdate();
+            
+            ptm = conn.prepareStatement(DELETE);
+            ptm.setInt(1, t.getId());
+            ptm.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     // 1> List products get by Category

@@ -32,7 +32,6 @@
 	
             <!-- Font Awesome Icon -->
             <link rel="stylesheet" href="css/font-awesome.min.css">
-            <link rel="stylesheet" href="css/shoppingCart.css">
 
             <!-- Custom stlylesheet -->
             <link type="text/css" rel="stylesheet" href="css/style.css"/>
@@ -48,43 +47,69 @@
     <body>
         <%@include file="header.jsp" %>
         
-        <div class="shopping-cart">
-            <div class="title">
-                Shopping Bag
-            </div>
-            <c:forEach items="${requestScope.items}" var="item">
-                <div class="item">
-                    <div class="buttons">
-                      <span class="delete-btn"></span>
-                    </div>
 
-                    <div class="image">
-                        <img src="media/images/${requestScope.WebManager.getInstance().bookDAO.getBookImageById(item.getBook().getId())[0]}" width="50px" height="80px" alt="" />
-                    </div>
+        <main role="main">
+                <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+                <div class="container mt-4">
+                    
+                    <a></a>
+                    
+                    <h1 class="text-center">Shopping Cart</h1>
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                        <th>Amount</th>
+                                        <th>Book's Price</th>
+                                        <th>Price</th>
+                                        <th>Increase</th>
+                                        <th>Decrease</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="datarow">
+                                    <c:forEach items="${requestScope.items}" var="item">
+                                        <tr>
+                                            <td>
+                                                <img src="media/images/${requestScope.WebManager.getInstance().bookDAO.getBookImageById(item.getBook().getId())[0]}" height="40px" width="40px" class="hinhdaidien">
+                                            </td>
+                                            <td>${item.getBook().getTitle()}${fn:substring(book.getTitle(), 0, 50)}</td>
+                                            <td class="text-right">${item.getAmount()}</td>
+                                            <td class="text-right">$${item.getBookPrice()}</td>
+                                            <td class="text-right">$${item.getTotalPrice()}</td>
+                                            <td>
+                                                <a id="delete_1" class="btn btn-danger btn-delete-sanpham" onclick="location.href = 'cartInsert?method=insert&link=cart&bookid=${item.getBook().getId()}&qty=1'">
+                                                    <i class="fa fa-minus-circle" aria-hidden="true"></i> Increase
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a id="delete_1" class="btn btn-danger btn-delete-sanpham" onclick="location.href = 'cartInsert?method=decrease&link=cart&bookid=${item.getBook().getId()}&qty=1'">
+                                                    <i class="fa fa-minus-circle" aria-hidden="true"></i> Decrease
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a id="delete_1" class="btn btn-danger btn-delete-sanpham" onclick="location.href = 'cartInsert?method=remove&link=cart&bookid=${item.getBook().getId()}&qty=1'">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i> Remove
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                    <div class="description">
-                      <span>${item.getBook().getTitle()}${fn:substring(book.getTitle(), 0, 50)}</span>
-                      <!--<span>${item.getBook().getCategory().getTitle()}</span>-->
-                      <span>${item.getBook().getCategory().getTitle()}</span>
+                            <a href="checkout?method=view" class="btn btn-primary btn-md">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Check out
+                            </a>
+                        </div>
                     </div>
-
-                    <div class="quantity">
-                      <button class="plus-btn" type="button" name="button">
-                          <a>+</a>
-                      </button>
-                      <input type="text" name="name" value="${item.getAmount()}">
-                      <button class="minus-btn" type="button" name="button">
-                          <a>-</a>
-                      </button>
-                    </div>
-
-                    <div class="total-price">${item.getAmount() * item.getBook().getPrice()} VND</div>
-                  </div>
-            </c:forEach>
-            
-            
-            
-        </div>
+                </div>
+                <!-- End block content -->
+            </main>
+        
         <%@include file="footer.jsp" %>
     </body>
 </html>

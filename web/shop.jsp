@@ -114,7 +114,7 @@
 												<p class="product-category">${book.getCategory().getTitle()}</p>
 												<h3 class="product-name"><a href="product?id=${book.getId()}">${fn:substring(book.getTitle(), 0, 50)}</a></h3>
 												<p>${book.getAuthor().getName()}</p>
-												<h4 class="product-price">${book.getPrice()} VND </h4>
+												<h4 class="product-price">$${book.getPrice()} </h4>
 												<div class="product-btns">
 <!--													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
 													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>-->
@@ -188,7 +188,7 @@
 												<p class="product-category">${book.getCategory().getTitle()}</p>
 												<h3 class="product-name"><a href="product?id=${book.getId()}">${fn:substring(book.getTitle(), 0, 50)}</a></h3>
 												<p>${book.getAuthor().getName()}</p>
-												<h4 class="product-price">${book.getPrice()} VND </h4>
+												<h4 class="product-price">$${book.getPrice()} </h4>
 												<div class="product-btns">
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>
@@ -239,7 +239,7 @@
 									<div class="product-body">
 										<p class="product-category">${book.getCategory().getTitle()}</p>
 										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
-										<h4 class="product-price"> ${book.getPrice()} VND</h4>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
 									</div>
 								</div>
 								<!-- /product widget -->
@@ -256,7 +256,7 @@
 									<div class="product-body">
 										<p class="product-category">${book.getCategory().getTitle()}</p>
 										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
-										<h4 class="product-price"> ${book.getPrice()} VND</h4>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
 									</div>
 								</div>
 								<!-- /product widget -->
@@ -284,7 +284,7 @@
 									<div class="product-body">
 										<p class="product-category">${book.getCategory().getTitle()}</p>
 										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
-										<h4 class="product-price"> ${book.getPrice()} VND</h4>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
 									</div>
 								</div>
 								<!-- /product widget -->
@@ -301,7 +301,7 @@
 									<div class="product-body">
 										<p class="product-category">${book.getCategory().getTitle()}</p>
 										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
-										<h4 class="product-price"> ${book.getPrice()} VND</h4>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
 									</div>
 								</div>
 								<!-- /product widget -->
@@ -331,7 +331,7 @@
 									<div class="product-body">
 										<p class="product-category">${book.getCategory().getTitle()}</p>
 										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
-										<h4 class="product-price"> ${book.getPrice()} VND</h4>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
 									</div>
 								</div>
 								<!-- /product widget -->
@@ -347,7 +347,7 @@
 									<div class="product-body">
 										<p class="product-category">${book.getCategory().getTitle()}</p>
 										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
-										<h4 class="product-price"> ${book.getPrice()} VND</h4>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
 									</div>
 								</div>
 								<!-- /product widget -->

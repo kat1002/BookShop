@@ -44,9 +44,8 @@
               <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
               <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             <![endif]-->
-
-
-    <jsp:useBean id = "bookData" class = "com.model.book.BookDAO" scope="request"></jsp:useBean>
+            
+            
 </head>
 
 <body>
@@ -63,10 +62,6 @@
 						<li class="active"><a href="#">Home</a></li>
 						<li><a href="#">Hot Deals</a></li>
 						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -208,14 +203,12 @@
 								<div><strong>TOTAL</strong></div>
 							</div>
 							<div class="order-products">
-								<div class="order-col">
-									<div>1x Product Name Goes Here</div>
-									<div>$980.00</div>
+                                                            <c:forEach items="${requestScope.list}" var="item">
+                                                                <div class="order-col">
+									<div>${item.getAmount()}x ${item.getBook().getTitle()}</div>
+									<div>$${item.getTotalPrice()}</div>
 								</div>
-								<div class="order-col">
-									<div>2x Product Name Goes Here</div>
-									<div>$980.00</div>
-								</div>
+                                                            </c:forEach>
 							</div>
 							<div class="order-col">
 								<div>Shiping</div>
@@ -223,7 +216,7 @@
 							</div>
 							<div class="order-col">
 								<div><strong>TOTAL</strong></div>
-								<div><strong class="order-total">$2940.00</strong></div>
+								<div><strong class="order-total">$${requestScope.totalPrice}</strong></div>
 							</div>
 						</div>
 						<div class="payment-method">
@@ -265,7 +258,7 @@
 								I've read and accept the <a href="#">terms & conditions</a>
 							</label>
 						</div>
-						<a href="#" class="primary-btn order-submit">Place order</a>
+						<a href="checkout?method=done" class="primary-btn order-submit">Place order</a>
 					</div>
 					<!-- /Order Details -->
 				</div>

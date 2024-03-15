@@ -46,4 +46,12 @@ public class Item {
     public void setIsChoosen(boolean isChoosen) {
         this.isChoosen = isChoosen;
     }
+    
+    public double getBookPrice(){
+        return book.getPrice();
+    }
+    
+    public double getTotalPrice(){
+        return amount * getBookPrice();
+    }
 }

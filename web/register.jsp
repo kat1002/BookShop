@@ -54,11 +54,9 @@
                         <h1>Create account</h1>
                         <form class="register-form" action="register" method="post">
                             <div class="text-warning">${requestScope.RegisterError}</div>
-                        <div> First name </div>    
-                        <input type="text" placeholder="First name" name="firstName" required=""/>
-                        <div> Last name </div>   
-                        <input type="text" placeholder="Last name" name="lastName" required/>
-                        <div> Username </div>   
+                        <div> Full name </div>    
+                        <input type="text" placeholder="Full name" name="fullname" required=""/>
+                        <div> User name </div>   
                         <input type="text" placeholder="Enter your username" name="username" required/>
                         <div> Password </div>   
                         <input type="password" placeholder="Enter your Password" name="password" required=""/>

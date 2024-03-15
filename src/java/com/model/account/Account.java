@@ -29,13 +29,6 @@ public class Account {
         setFullname(fullname);
         setEmail(email);
     }
-    
-    public Account(int id, String username, String password, int role) {
-        setId(id);
-        setUsername(username);
-        setPassword(password);
-        setRole(role);
-    }
 
     public int getId() {
         return id;
@@ -83,6 +76,11 @@ public class Account {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getRoleName(){
+        if(role == 0) return "Customer";
+        return "Admin";
     }
     
 }

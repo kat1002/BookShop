@@ -51,11 +51,31 @@ public class Cart {
         itemDAO.insert(i);
     }
     
-    public void removeItem(Item i){
+    public void decreaseItem(Item i){
+        
+        items = getItems();
+        ItemDAO itemDAO = WebManager.getInstance().itemDAO;
+        
         for(int j = 0; j < items.size(); ++j){
             if(i.getBook().getId() == items.get(j).getBook().getId()){
                 items.get(j).setAmount(items.get(j).getAmount() - i.getAmount());
-                if(items.get(j).getAmount() <= 0) items.remove(j);
+                
+                String[] params = new String[3];
+                itemDAO.update(items.get(j), params);
+                if(items.get(j).getAmount() <= 0) itemDAO.delete(items.get(j));
+                return;
+            }
+        }
+    }
+    
+    public void removeItem(Item i){
+        
+        items = getItems();
+        ItemDAO itemDAO = WebManager.getInstance().itemDAO;
+        
+        for(int j = 0; j < items.size(); ++j){
+            if(i.getBook().getId() == items.get(j).getBook().getId()){
+                itemDAO.delete(items.get(j));
                 return;
             }
         }

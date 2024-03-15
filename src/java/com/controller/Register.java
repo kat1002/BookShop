@@ -35,13 +35,11 @@ public class Register extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         try{
-            String firstName = request.getParameter("firstname");
-            String lastName = request.getParameter("lastname");
+            String fullname = request.getParameter("fullname");
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String repassword = request.getParameter("repassword");
             String email = request.getParameter("email");
-            String fullname = firstName + " " + lastName;
             
             if(WebManager.getInstance().accountDAO.isUsernameExists(username)){
                 request.setAttribute("RegisterError", "Username already exists");

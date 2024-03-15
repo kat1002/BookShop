@@ -44,11 +44,12 @@
               <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
               <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             <![endif]-->
-
+            
 </head>
 
 <body>
         <%@include file="header.jsp" %>
+        
 	<main>
                <!-- NAVIGATION -->
 		<nav id="navigation">
@@ -156,9 +157,9 @@
 
 					<!-- STORE -->
 					<div id="store" class="col-md-9">
-						<!-- store top filter -->
+<!--						 store top filter 
 						<div class="store-filter clearfix">
-							<div class="store-sort">
+							 <div class="store-sort">
 								<label>
 									Sort By:
 									<select class="input-select">
@@ -174,13 +175,13 @@
 										<option value="1">50</option>
 									</select>
 								</label>
-							</div>
+							</div> 
 							<ul class="store-grid">
 								<li class="active"><i class="fa fa-th"></i></li>
 								<li><a href="#"><i class="fa fa-th-list"></i></a></li>
 							</ul>
 						</div>
-						<!-- /store top filter -->
+						 /store top filter -->
 
 						<!-- store products -->
 						<div class="row">
@@ -220,7 +221,7 @@
 						</div>
 						<!-- /store products -->
 
-						<!-- store bottom filter -->
+<!--						 store bottom filter 
 						<div class="store-filter clearfix">
 							<span class="store-qty">Showing 20-100 products</span>
 							<ul class="store-pagination">
@@ -231,7 +232,7 @@
 								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 							</ul>
 						</div>
-						<!-- /store bottom filter -->
+						 /store bottom filter -->
 					</div>
 					<!-- /STORE -->
 				</div>

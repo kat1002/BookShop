@@ -29,7 +29,7 @@ public class AuthorDAO implements DAO<Author> {
     private final String GET        = "SELECT * FROM [authors] WHERE [id] = ?";
     private final String GETALL     = "SELECT [id], [name] FROM [authors]";
     private final String DELETE     = "DELETE FROM [authors] WHERE [id] = ?";
-    private final String INSERT     = "INSERT INTO [authors] ([name]) VALUES (?)";
+    private final String INSERT     = "INSERT INTO [authors] VALUES (?)";
     private final String UPDATE     = "UPDATE [authors] SET [name] = ? WHERE [id] = ?";
     
     @Override
@@ -79,7 +79,14 @@ public class AuthorDAO implements DAO<Author> {
 
     @Override
     public void insert(Author t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(INSERT);
+            ptm.setString(1, t.getName());
+            ptm.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }    
     }
 
     @Override

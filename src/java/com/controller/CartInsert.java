@@ -52,8 +52,8 @@ public class CartInsert extends HttpServlet {
                 WebManager.getInstance().cart.removeItem(item);
             }
 
-            if(method.equals("change")){
-                WebManager.getInstance().cart.changeItem(item);
+            if(method.equals("decrease")){
+                WebManager.getInstance().cart.decreaseItem(item);
             }
 
             System.out.println(WebManager.getInstance().cart.getItems());

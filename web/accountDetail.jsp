@@ -50,55 +50,75 @@
         
         <%@include file="header.jsp" %>
         
-        <div class="form">
-            
-                <h1>THÔNG TIN TÀI KHOẢN</h1>
-                <form class="login-form" action = "update" method="post">
-                            <div class="login__field">
-                                <i class="login__icon fas fa-user"> Username: </i> <a>${sessionScope.account.getUsername()}</a> 
-                            </div>
-                            <div class="login__field">
-                                <i class="login__icon fas fa-user"> Fullname: </i> <a>${sessionScope.account.getFullname()}</a>
-                            </div>
-                            <div class="login__field">
-                                <i class="login__icon fas fa-user"> Email: </i> <a>${sessionScope.account.getEmail()}</a> 
-                            </div>
-                            
-                            <button class="button login__submit">
-                                    <span class="button__text">Update</span>
-                                    <i class="button__icon fas fa-chevron-right"></i>
-                            </button>				
+        <div class="container">
+            <h1>Edit Profile</h1>
+                <hr>
+                <div class="row">
+              <!-- edit form column -->
+              <div class="col-md-9 personal-info">
+                  <c:if test="${requestScope.msg != null}">
+                    <div class="alert alert-info alert-dismissable">
+                      <a class="panel-close close" data-dismiss="alert">×</a> 
+                      <i class="fa fa-coffee"></i>
+                      ${requestScope.msg}
+                    </div>
+                  </c:if>
+                  
+                <h3>Personal info</h3>
+
+                <form class="form-horizontal" action="account" method="post" role="form">
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Fullname</label>
+                    <div class="col-lg-8">
+                      <input class="form-control" type="text" name="fullname" value="${sessionScope.account.getFullname()}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="email" value="${sessionScope.account.getEmail()}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Username:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" name="username" value="${sessionScope.account.getUsername()}" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" name="password" value="" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Confirm password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" name="repassword" value="" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                      <input type="submit" class="btn btn-primary" value="Save Changes">
+                      <span></span>
+                      <input type="reset" class="btn btn-default" value="Cancel">
+                    </div>
+                  </div>
                 </form>
-                            
+              </div>
+          </div>
+        </div>
+        <hr>
+        
+        <div class="form">
                 <form class="login-form" action = "logout" method="post">            
                             <button class="button login__submit">
                                     <span class="button__text">Logout</span>
                                     <i class="button__icon fas fa-chevron-right"></i>
                             </button>				
                 </form>
-
-
-<!--                            <div class="social-login">
-                            <h3>log in via</h3>
-                            <div class="social-icons">
-                                    <a href="#" class="social-login__icon fab fa-instagram"></a>
-                                    <a href="#" class="social-login__icon fab fa-facebook"></a>
-                                    <a href="#" class="social-login__icon fab fa-twitter"></a>
-                            </div>
-                    </div>-->
             </div>
-                
-                
-        
-        
-        
-        <script>
-            function togglePasswordSection() {
-                var passwordSection = document.querySelector('.password-section');
-                passwordSection.style.display = document.getElementById('changePassword').checked ? 'block' : 'none';
-            }
-        </script>
-        
         </div>
 
         <%@include file="footer.jsp" %>
