@@ -101,37 +101,6 @@ CREATE TABLE [cart_items](
 )
 GO
 
-CREATE TABLE [account_addresses] (
-  [id] INT PRIMARY KEY IDENTITY(1, 1),
-  [account_id] INT,
-  [phone_number] NVARCHAR(255),
-  [street_number] NVARCHAR(255),
-  [street_name] NVARCHAR(255),
-  [city] NVARCHAR(255),
-  [country] NVARCHAR(255)
-)
-GO
-
-CREATE TABLE [orders](
-  [id] INT PRIMARY KEY IDENTITY(1, 1),
-  [account_id] INT,
-  [created] DATE,
-  [status] NVARCHAR(255),
-  [total_price] MONEY,
-  [address_id] INT
-)
-GO
-
-CREATE TABLE [order_details](
-  [book_id] INT,
-  [order_id] INT,
-  [amount] INT,
-  PRIMARY KEY ([book_id], [order_id]),
-  FOREIGN KEY ([order_id]) REFERENCES [orders] ([id]),
-  FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-)
-GO
-
 ALTER TABLE [books] ADD FOREIGN KEY ([category_id]) REFERENCES [categories] ([id])
 GO
 
@@ -150,17 +119,7 @@ GO
 ALTER TABLE [cart_items] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
 GO
 
-ALTER TABLE [order_details] ADD FOREIGN KEY ([order_id]) REFERENCES [orders] ([id])
-GO
 
-ALTER TABLE [order_details] ADD FOREIGN KEY ([book_id]) REFERENCES [books] ([id])
-GO
-
-ALTER TABLE [account_addresses] ADD FOREIGN KEY ([account_id]) REFERENCES [accounts] ([id])
-GO
-
-ALTER TABLE [orders] ADD FOREIGN KEY ([address_id]) REFERENCES [account_addresses] ([id])
-GO
 
 
 

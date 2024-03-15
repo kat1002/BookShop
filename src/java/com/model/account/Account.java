@@ -4,9 +4,6 @@
  */
 package com.model.account;
 
-import com.model.address.Address;
-import java.util.Date;
-
 /**
  *
  * @author kat1002

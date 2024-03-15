@@ -13,8 +13,6 @@ import com.model.cart.Cart;
 import com.model.category.Category;
 import com.model.item.Item;
 import com.model.item.ItemDAO;
-import com.model.order.OrderDAO;
-import com.model.order.OrderDetailDAO;
 import com.model.publisher.PublisherDAO;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -28,8 +26,6 @@ import java.util.concurrent.Flow.Publisher;
 public class WebManager {
     public AccountDAO accountDAO;
     public BookDAO bookDAO;
-    public OrderDAO orderDAO;
-    public OrderDetailDAO orderDetailDAO;
     public CategoryDAO categoryDAO;
     public AuthorDAO authorDAO;
     public PublisherDAO publisherDAO;
@@ -43,8 +39,6 @@ public class WebManager {
     private WebManager(){
         accountDAO = new AccountDAO();
         bookDAO = new BookDAO();
-        orderDAO = new OrderDAO();
-        orderDetailDAO = new OrderDetailDAO();
         categoryDAO = new CategoryDAO();
         authorDAO = new AuthorDAO();
         publisherDAO = new PublisherDAO();
@@ -72,22 +66,6 @@ public class WebManager {
 
     public void setBookDAO(BookDAO bookDAO) {
         this.bookDAO = bookDAO;
-    }
-
-    public OrderDAO getOrderDAO() {
-        return orderDAO;
-    }
-
-    public void setOrderDAO(OrderDAO orderDAO) {
-        this.orderDAO = orderDAO;
-    }
-
-    public OrderDetailDAO getOrderDetailDAO() {
-        return orderDetailDAO;
-    }
-
-    public void setOrderDetailDAO(OrderDetailDAO orderDetailDAO) {
-        this.orderDetailDAO = orderDetailDAO;
     }
 
     public CategoryDAO getCategoryDAO() {
