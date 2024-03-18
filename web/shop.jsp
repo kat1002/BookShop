@@ -4,432 +4,411 @@
     Author     : kat1002
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title>KAT | HOME</title>
-	<link rel="stylesheet" href="css/shop.css"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+             <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+            <title>KAT | HOME</title>
+
+            <!-- Google font -->
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+            <!-- Bootstrap -->
+            <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+            <!-- Slick -->
+            <link type="text/css" rel="stylesheet" href="css/slick.css"/>
+            <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+            <!-- nouislider -->
+            <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	
+            <!-- Font Awesome Icon -->
+            <link rel="stylesheet" href="css/font-awesome.min.css">
+
+            <!-- Custom stlylesheet -->
+            <link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
 </head>
 
 <body>
-        <%@include file="header.jsp" %>
-	<main>
-		<div class="slideshow-container">
-			<div class="mySlides fade">
-				<img src="media/slide1.webp" style="width: 100%" />
-			</div>
-			<div class="mySlides fade">
-				<img src="media/slide2.webp" style="width: 100%" />
-			</div>
-			<div class="mySlides fade">
-				<img src="media/slide3.webp" style="width: 100%" />
-			</div>
-			<a class="prev" onclick="plusSlides(-1)">❮</a>
-			<a class="next" onclick="plusSlides(1)">❯</a>
-		</div>
-		<p class="title" id="first">Shop Popular Categories</p>
-		<div class="img-list-mobile">
-			<ul class="menu">
-				<div class="img-row">
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/drums.png" alt="" /><br />Drum
-						</a>
-					</li>
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/guitar.png" alt="" /><br />Guitar
-						</a>
-					</li>
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/headphone.png" alt="" /><br />Headphone
-						</a>
-					</li>
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/microphone.png" alt="" /><br />Microphone
-						</a>
-					</li>
-				</div>
-				<div class="img-row">
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/keyboard.png" alt="" /><br />Keyboard
-						</a>
-					</li>
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/software.png" alt="" /><br />Software
-						</a>
-					</li>
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/speaker.png" alt="" /><br />Speaker
-						</a>
-					</li>
-					<li class="list-item">
-						<a class="menu-link" href="categories.html">
-							<img src="media/synthesizer.png" alt="" /><br />Synthesizer
-						</a>
-					</li>
-				</div>
-			</ul>
-		</div>
-		<div class="img-list-desktop">
-			<ul class="menu">
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/drums.png" alt="" /><br />Drum
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/guitar.png" alt="" /><br />Guitar
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/headphone.png" alt="" /><br />Headphone
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/microphone.png" alt="" /><br />Microphone
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/keyboard.png" alt="" /><br />Keyboard
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/software.png" alt="" /><br />Software
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/speaker.png" alt="" /><br />Speaker
-					</a>
-				</li>
-				<li class="list-item">
-					<a class="menu-link" href="categories.html">
-						<img src="media/synthesizer.png" alt="" /><br />Synthesizer
-					</a>
-				</li>
-			</ul>
-		</div>
-		<p class="title">Hot Deals</p>
-		<div class="product">
-			<ul>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-			</ul>
-		</div>
-		<p class="title">Best sellers</p>
-		<div class="product">
-			<ul>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-			</ul>
-		</div>
-		<p class="title">NEW ARRIVALS</p>
-		<div class="product">
-			<ul>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-				<li class="product-card">
-					<a href="product.html"><img src="media/guitar-img.webp" alt="" /></a>
-					<a class="menu-link" href="product.html">Ibanez Artwood AW84CE-WK Acoustic Guitar, Weathered
-						Black</a>
-					<p class="star">
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						<i class="fa-solid fa-star" style="color: #9f8a46"></i>
-						(1)
-					</p>
-					<p class="stock">In stock</p>
-					<p class="price">$383.99</p>
-				</li>
-			</ul>
-		</div>
-		<p class="title" id="f-ar">Featured Articles</p>
-		<div class="f-ar2">
-			<div class="card3">
-				<a href=""><img class="pod"
-						src="https://blog.sweelee.com/uploads/2023/08/The-Best-Pedalboards-2023@1200x630-480x237.jpg"
-						alt="" /></a>
-				<p>
-					<a class="menu-link" href="#">The Best Pedalboards 2023</a>
-				</p>
-				<p class="cmt">
-					There's no easier, neater way to o...<a class="menu-link fix2" href="#">Read more</a>
-				</p>
-			</div>
-			<div class="card3">
-				<a href=""><img class="pod"
-						src="https://blog.sweelee.com/uploads/2023/08/The-Best-Pedalboards-2023@1200x630-480x237.jpg"
-						alt="" /></a>
-				<p>
-					<a class="menu-link" href="#">The Best Pedalboards 2023</a>
-				</p>
-				<p class="cmt">
-					There's no easier, neater way to o...<a class="menu-link fix2" href="#">Read more</a>
-				</p>
-			</div>
-			<div class="card3">
-				<a href=""><img class="pod"
-						src="https://blog.sweelee.com/uploads/2023/08/The-Best-Pedalboards-2023@1200x630-480x237.jpg"
-						alt="" /></a>
-				<p>
-					<a class="menu-link" href="#">The Best Pedalboards 2023</a>
-				</p>
-				<p class="cmt">
-					There's no easier, neater way to o...<a class="menu-link fix2" href="#">Read more</a>
-				</p>
-			</div>
-		</div>
-		<div class="b-end">
-			<div class="card2">
-				<p class="icon">
-					<i class="fa-solid fa-truck-ramp-box"></i>
-				</p>
-				<p class="title2">Reliable Deliveries</p>
-				<p class="cmt">Safe and fast shipping</p>
-			</div>
-			<div class="card2">
-				<p class="icon"><i class="fa-solid fa-wallet"></i></p>
-				<p class="title2">many incentives</p>
-				<p class="cmt">There are several active sales</p>
-			</div>
-			<div class="card2">
-				<p class="icon"><i class="fa-solid fa-tags"></i></p>
-				<p class="title2" id="fix">Tax Included</p>
-				<p class="cmt">All prices are inclusive of tax</p>
-			</div>
-			<div class="card2">
-				<p class="icon"><i class="fa-solid fa-repeat"></i></p>
-				<p class="title2">WARRANTY 30 DAYS</p>
-				<p class="cmt">Simple satisfied or refunded</p>
-			</div>
-		</div>
-	</main>
-        <%@include file="footer.jsp" %>
+		<%@include file="header.jsp" %>
 
-	<script src="../js/Slide.js"></script>
-</body>
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li class="active"><a href="shop">Home</a></li>
+						<li><a href="#">Hot Deals</a></li>
+						<li><a href="categories?categoryId=0">Categories</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">New Products</h3>
+                                                        
+<!--							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+									<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
+									<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
+									<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
+									<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+								</ul>
+							</div>-->
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+                                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(5)}" var="book">
+                                                                                <!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="345px" height="345px" alt="">
+												<div class="product-label">
+<!--													<span class="sale">-30%</span>-->
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">${book.getCategory().getTitle()}</p>
+												<h3 class="product-name"><a href="product?id=${book.getId()}">${fn:substring(book.getTitle(), 0, 50)}</a></h3>
+												<p>${book.getAuthor().getName()}</p>
+												<h4 class="product-price">$${book.getPrice()} </h4>
+												<div class="product-btns">
+<!--													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>-->
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+											<div class="add-to-cart">
+                                                                                            <button id="add-to-cart" class="add-to-cart-btn" onclick="location.href = 'cartInsert?method=insert&link=shop&bookid=${book.getId()}&qty=1'"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											</div>
+										</div>
+										<!-- /product -->
+                                                                            </c:forEach>
+                                                                                
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Top selling</h3>
+<!--							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+									<li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
+									<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
+									<li><a data-toggle="tab" href="#tab2">Cameras</a></li>
+									<li><a data-toggle="tab" href="#tab2">Accessories</a></li>
+								</ul>
+							</div>-->
+						</div>
+					</div>
+					<!-- /section title -->
+
+                                        
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab2" class="tab-pane fade in active">
+									<div class="products-slick" data-nav="#slick-nav-2">
+                                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(5)}" var="book">
+                                                                                <!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="345px" height="345px" alt="">
+												<div class="product-label">
+<!--													<span class="sale">-30%</span>-->
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">${book.getCategory().getTitle()}</p>
+												<h3 class="product-name"><a href="product?id=${book.getId()}">${fn:substring(book.getTitle(), 0, 50)}</a></h3>
+												<p>${book.getAuthor().getName()}</p>
+												<h4 class="product-price">$${book.getPrice()} </h4>
+												<div class="product-btns">
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<<button id="add-to-cart" class="add-to-cart-btn" onclick="location.href = 'cartInsert?method=insert&link=shop&bookid=${book.getId()}&qty=1'"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											</div>
+										</div>
+										<!-- /product -->
+                                                                        </c:forEach>
+									</div>
+									<div id="slick-nav-2" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- /Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Top selling</h4>
+							<div class="section-nav">
+								<div id="slick-nav-3" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick" data-nav="#slick-nav-3">
+							<div>
+                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
+                                                                <!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="60px" height="60px" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">${book.getCategory().getTitle()}</p>
+										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+                                                            </c:forEach>
+							</div>
+                                                    
+                                                        <div>
+                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
+                                                                <!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="60px" height="60px" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">${book.getCategory().getTitle()}</p>
+										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+                                                            </c:forEach>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Top selling</h4>
+							<div class="section-nav">
+								<div id="slick-nav-4" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick" data-nav="#slick-nav-4">
+							<div>
+                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
+                                                                <!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="60px" height="60px" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">${book.getCategory().getTitle()}</p>
+										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+                                                            </c:forEach>
+							</div>
+                                                    
+                                                        <div>
+                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
+                                                                <!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="60px" height="60px" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">${book.getCategory().getTitle()}</p>
+										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+                                                            </c:forEach>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix visible-sm visible-xs"></div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Top selling</h4>
+							<div class="section-nav">
+								<div id="slick-nav-5" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick" data-nav="#slick-nav-5">
+							<div>
+								<c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="60px" height="60px" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">${book.getCategory().getTitle()}</p>
+										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+                                                            </c:forEach>
+							</div>
+                                                        <div>
+                                                            <c:forEach items="${WebManager.getInstance().bookDAO.getRandomBooks(3)}" var="book">
+                                                                <!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="media/images/${WebManager.getInstance().bookDAO.getBookImageById(book.getId())[0]}" width="60px" height="60px" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">${book.getCategory().getTitle()}</p>
+										<h3 class="product-name"><a href="product?id=${book.getId()}">${book.getTitle()}</a></h3>
+										<h4 class="product-price"> $${book.getPrice()}</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+                                                            </c:forEach>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- NEWSLETTER -->
+		<div id="newsletter" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<form>
+								<input class="input" type="email" placeholder="Enter Your Email">
+								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+							</form>
+							<ul class="newsletter-follow">
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-pinterest"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /NEWSLETTER -->
+
+		<%@include file="footer.jsp" %>
+                
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
 
 </html>

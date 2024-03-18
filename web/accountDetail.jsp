@@ -8,56 +8,117 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+             <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+            <title>KAT | LOGIN</title>
+
+            <!-- Google font -->
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+            <!-- Bootstrap -->
+            <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+            <!-- Slick -->
+            <link type="text/css" rel="stylesheet" href="css/slick.css"/>
+            <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+            <!-- nouislider -->
+            <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	
+            <!-- Font Awesome Icon -->
+            <link rel="stylesheet" href="css/font-awesome.min.css">
+
+            <!-- Custom stlylesheet -->
+            <link type="text/css" rel="stylesheet" href="css/style.css"/>
+            <link rel="stylesheet" href="css/login.css"/>
+
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+
+
     </head>
     <body>
         
         <%@include file="header.jsp" %>
-        <div>
-            <h1>THÔNG TIN TÀI KHOẢN</h1>
-            <label for="last-name">Họ*</label>
-            <input type="text" name="last-name" id="last-name" placeholder="Nhập họ" required><br/>
-            <label for="first-name">Tên*</label>
-            <input type="text" name="first-name" id="first-name" placeholder="Nhập tên" required><br/>
-            <label for="phone">Số điện thoại</label>
-            <input type="text" name="phone" id="phone" value="${requestScope.phone}"><br/>
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Chưa có email"><br/>
-            Giới tính* <label>
-                <input type="radio" name="gender" value="male" required> Nam
-            </label>
-            <label>
-                <input type="radio" name="gender" value="female"> Nữ
-            </label><br/>
-            <label for="birthday">Birthday*</label>
-        <input type="date" id="birthday" name="birthday" required><br/>
         
-        <label for="changePassword">Đổi mật khẩu</label>
-        <input type="checkbox" id="changePassword" name="changePassword" onclick="togglePasswordSection()">
-        
-        <div class="password-section" style="display: none">
-            <label for="currentPassword">Mật khẩu hiện tại*</label>
-            <input type="password" id="currentPassword" name="currentPassword" placeholder="Mật khẩu hiện tại*">
-            
-            <label for="newPassword">Mật khẩu mới*</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Mật khẩu mới*">
-            
-            <label for="confirmPassword">Nhập lại mật khẩu mới*</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu mới*">
+        <div class="container">
+            <h1>Edit Profile</h1>
+                <hr>
+                <div class="row">
+              <!-- edit form column -->
+              <div class="col-md-9 personal-info">
+                  <c:if test="${requestScope.msg != null}">
+                    <div class="alert alert-info alert-dismissable">
+                      <a class="panel-close close" data-dismiss="alert">×</a> 
+                      <i class="fa fa-coffee"></i>
+                      ${requestScope.msg}
+                    </div>
+                  </c:if>
+                  
+                <h3>Personal info</h3>
+
+                <form class="form-horizontal" action="account" method="post" role="form">
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Fullname</label>
+                    <div class="col-lg-8">
+                      <input class="form-control" type="text" name="fullname" value="${sessionScope.account.getFullname()}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="email" value="${sessionScope.account.getEmail()}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Username:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" name="username" value="${sessionScope.account.getUsername()}" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" name="password" value="" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Confirm password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" name="repassword" value="" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                      <input type="submit" class="btn btn-primary" value="Save Changes">
+                      <span></span>
+                      <input type="reset" class="btn btn-default" value="Cancel">
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
         </div>
+        <hr>
         
-        <div>
-            <button type="submit">Lưu thay đổi</button>
-        </div>
-        
-        <script>
-            function togglePasswordSection() {
-                var passwordSection = document.querySelector('.password-section');
-                passwordSection.style.display = document.getElementById('changePassword').checked ? 'block' : 'none';
-            }
-        </script>
-        
+        <div class="form">
+                <form class="login-form" action = "logout" method="post">            
+                            <button class="button login__submit">
+                                    <span class="button__text">Logout</span>
+                                    <i class="button__icon fas fa-chevron-right"></i>
+                            </button>				
+                </form>
+            </div>
         </div>
 
         <%@include file="footer.jsp" %>

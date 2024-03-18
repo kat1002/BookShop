@@ -4,7 +4,9 @@
  */
 package com.model.account;
 
+import com.controller.WebManager;
 import com.model.DAO;
+import com.model.item.Item;
 import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
@@ -24,15 +26,18 @@ import java.util.logging.Logger;
 public class AccountDAO implements DAO<Account> {
     
     // SQL queries
-    private final String LOGIN    = "SELECT id, role FROM accounts WHERE username = ? AND password = ?";
-    private final String REGISTER = "INSERT INTO accounts (username, password, role) VALUES (?, ?, 0)";
-    private final String GETALL   = "SELECT * FROM accounts";
-    private final String GET      = "SELECT * FROM accounts WHERE id = ?";
-    private final String DELETE   = "DELETE FROM accounts WHERE id = ?";
-    private final String INSERT   = "INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)";
-    private final String UPDATE   = "UPDATE accounts SET username = ?, password = ?, role = ? WHERE id = ?";
+    private final String LOGIN    = "SELECT * FROM [accounts] WHERE [username] = ? AND [password] = ?";
+    private final String REGISTER = "INSERT INTO [accounts] ([username], [password], [fullname], [email], [role]) VALUES (?, ?, ?, ?, 0)";
+    private final String GETALL   = "SELECT * FROM [accounts]";
+    private final String GET      = "SELECT * FROM [accounts] WHERE [id] = ?";
+    private final String DELETE   = "DELETE * FROM [accounts] WHERE [id] = ?";
+    private final String DELETEINITEMS = "DELETE * FROM [cart_items] where [account_id] = ?";
+    private final String INSERT   = "INSERT INTO [accounts] ([username], [password], [role]) VALUES (?, ?, ?)";
+    private final String ROLEUPDATE   = "UPDATE [accounts] SET [role] = ? WHERE [id] = ?";
+    private final String PROFILEUPDATE   = "UPDATE [accounts] SET [fullname] = ?, [email] = ? WHERE [id] = ?";
+    private final String USERNAMEEXISTS = "SELECT * FROM [accounts] WHERE [username] = ?";
+    private final String GETCARTITEMS = "SELECT * FROM [cart_items] WHERE [account_id] = ?";
     
-    private final String USERNAMEEXISTS = "SELECT id FROM accounts WHERE username = ?";
     /**
      * Check if the provided username and password match an account in the database
      * @param username The username to check
@@ -42,7 +47,6 @@ public class AccountDAO implements DAO<Account> {
      * @throws ClassNotFoundException if the JDBC driver class is not found
      */
     public Account checkLogin(String username, String password) throws SQLException, ClassNotFoundException {
-        Account curAccount = null;
         
         try {
             Connection conn = DBUtils.getConnection();
@@ -50,35 +54,39 @@ public class AccountDAO implements DAO<Account> {
             if (conn != null) {
                 ptm.setString(1, username);
                 ptm.setString(2, password);
+                
                 ResultSet rs = ptm.executeQuery();
+                
+                if(rs.next()){
+                    Account account = new Account();
+                    account.setId(rs.getInt("id"));
+                    account.setUsername(username);
+                    account.setPassword(password);
+                    account.setFullname(rs.getString("fullname"));
+                    account.setEmail(rs.getString("email"));
+                    account.setRole(rs.getInt("role"));
                     
-                if (rs.next()) {
-                    int id = rs.getInt("id");
-                    int role = rs.getInt("role");
-                        
-                    if (role == 1)
-                        curAccount = new Admin(id, username, password);
-                    else if (role == 0)
-                        curAccount = new User(id, username, password);
-                        
+                    return account;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return curAccount;
+        return null;
     }
     
     public boolean isUsernameExists(String username){
         try{
             Connection conn = DBUtils.getConnection();
-            PreparedStatement ptm = conn.prepareStatement(LOGIN);
+            PreparedStatement ptm = conn.prepareStatement(USERNAMEEXISTS);
             if(conn != null){
                 ptm.setString(1, username);
                 ResultSet rs = ptm.executeQuery();
                 
-                if(rs.next()) return true;
+                while(rs.next()){
+                    return true;
+                }
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -87,7 +95,7 @@ public class AccountDAO implements DAO<Account> {
         return false;
     }
 
-    public Account register(String username, String password) throws ClassNotFoundException{
+    public boolean register(String username, String password, String fullname, String email) throws ClassNotFoundException{
         
         int id;
         
@@ -95,20 +103,23 @@ public class AccountDAO implements DAO<Account> {
             id = generateId();
         } while(isIdExisted(id));
         
-        User newAccount = new User(id, username, password);
         // code to insert the new account to the database
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement stmt = conn.prepareStatement(REGISTER);
             stmt.setString(1, username);
             stmt.setString(2, password);
+            stmt.setString(3, fullname);
+            stmt.setString(4, email);
+            
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-
-        return newAccount;
+        
+        return true;
     }
     
     private int generateId(){
@@ -143,7 +154,7 @@ public class AccountDAO implements DAO<Account> {
      * @return An Optional containing the Account if found, empty otherwise
      */
     @Override
-    public Optional<Account> get(int id) {
+    public Account get(int id) {
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ptm = conn.prepareStatement(GET);
@@ -154,12 +165,10 @@ public class AccountDAO implements DAO<Account> {
                 int accountId = rs.getInt("id");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
+                String fullname = rs.getString("fullname");
+                String email = rs.getString("email");
                 int role = rs.getInt("role");
-    
-                if (role == 1)
-                    return Optional.of(new Admin(id, username, password));
-                else if (role == 0)
-                    return Optional.of(new User(id, username, password));
+                return new Account(id, username, password, fullname, email, role);
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -178,24 +187,19 @@ public class AccountDAO implements DAO<Account> {
     
         try {
             Connection conn = DBUtils.getConnection();
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery(GETALL);
+            PreparedStatement ptm = conn.prepareStatement(GETALL);;
+            ResultSet rs = ptm.executeQuery();
     
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                int role = rs.getInt("role");
-    
-                if (role == 1)
-                    accounts.add(new Admin(id, username, password));
-                else if (role == 0)
-                    accounts.add(new User(id, username, password));
+                accounts.add(get(id));
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-    
+        
+        //System.out.println("AccountDAO: getAll| " + accounts);
+        
         return accounts;
     }
     
@@ -225,11 +229,22 @@ public class AccountDAO implements DAO<Account> {
     public void update(Account t, String[] params) {
         try {
             Connection conn = DBUtils.getConnection();
-            PreparedStatement ptm = conn.prepareStatement(UPDATE);
+            PreparedStatement ptm = conn.prepareStatement(PROFILEUPDATE);
             ptm.setString(1, params[0]);
             ptm.setString(2, params[1]);
-            ptm.setInt(3, Integer.parseInt(params[2]));
-            ptm.setInt(4, t.getId());
+            ptm.setInt(3, t.getId());
+            ptm.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void roleUpdate(Account t, int role) {
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(ROLEUPDATE);
+            ptm.setInt(1, role);
+            ptm.setInt(2, t.getId());
             ptm.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -243,16 +258,46 @@ public class AccountDAO implements DAO<Account> {
      */
     @Override
     public void delete(Account t){
-        try (
+        try {
             Connection conn = DBUtils.getConnection();
-            PreparedStatement ptm = conn.prepareStatement(DELETE)) {
+            PreparedStatement ptm = conn.prepareStatement(DELETEINITEMS);
             ptm.setInt(1, t.getId()); // Set the parameter value for the query
-            ptm.executeUpdate(); // Execute the delete query
+            ptm.executeUpdate(); // Execute the delete queryz
+            
+            ptm = conn.prepareStatement(DELETE);
+            ptm.setInt(1, t.getId()); // Set the parameter value for the query
+            ptm.executeUpdate(); // Execute the delete queryz
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public List<Item> getCartItems(int id){
+        List<Item> list = new ArrayList<>();
+        
+        try (
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ptm = conn.prepareStatement(GETCARTITEMS)) {
+            ptm.setInt(1, id); // Set the parameter value for the query
+            ResultSet rs = ptm.executeQuery();
+            
+            while(rs.next()){
+                list.add(new Item(
+                        WebManager.getInstance().bookDAO.get(rs.getInt("book_id")),
+                        rs.getInt("amount")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
     
 }

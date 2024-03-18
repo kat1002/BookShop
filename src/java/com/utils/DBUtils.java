@@ -25,18 +25,29 @@ public class DBUtils {
         
         String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
         
-        Connection con = null;
+        Connection conn = null;
+        
+        //System.out.println("Connect DB...");
         
         try{
-            //Loading driver
-            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
-            //Creating a connection
-            con = DriverManager.getConnection(url, user, password);
+//            //Loading driver
+//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//            
+//            //Creating a connection
+//            con = DriverManager.getConnection(url, user, password);
+
+            String username = "sa";
+            String password = "123";
+            String urll = "jdbc:sqlserver://localhost:1433;databaseName=Book_Shop";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            conn = DriverManager.getConnection(urll, username, password);
+            
+            //System.out.println(conn);
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Error: " +  ex.toString());
-            throw new SQLException(ex.getMessage());
+            //throw new SQLException(ex.getMessage());
         }
         
-        return con;
+        return conn;
     }
 }

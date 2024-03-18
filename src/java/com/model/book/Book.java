@@ -5,10 +5,11 @@
 package com.model.book;
 
 import com.model.author.Author;
+import com.model.category.Category;
+import com.model.publisher.Publisher;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import com.model.publisher.Publisher;
 
 /**
  *
@@ -17,37 +18,23 @@ import com.model.publisher.Publisher;
 public class Book {
    private int id;
    private String title;
-   private List<String> images = new ArrayList<>();
-   private String ageRate;
-   private double inPrice;
-   private double outPrice;
+   private double price;
    private int stock;
+   private Category category;
    private Publisher publisher;
-   private String series;
-   private String translator;
-   private Date date;
-   private String language;
-   private String coverType;
-   private float discount;
-   private List<Author> authors = new ArrayList<>();
+   private Author author;
 
     public Book() {
     }
 
-    public Book(int id, String title, String ageRate, double inPrice, double outPrice, int stock, Publisher publisher, String series, String translator, Date date, String language, String coverType, float discount) {
+    public Book(int id, String title, double price, int stock, Category category, Publisher publisher, Author author) {
         this.id = id;
         this.title = title;
-        this.ageRate = ageRate;
-        this.inPrice = inPrice;
-        this.outPrice = outPrice;
+        this.price = price;
         this.stock = stock;
+        this.category = category;
         this.publisher = publisher;
-        this.series = series;
-        this.translator = translator;
-        this.date = date;
-        this.language = language;
-        this.coverType = coverType;
-        this.discount = discount;
+        this.author = author;
     }
 
     public int getId() {
@@ -66,28 +53,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getAgeRate() {
-        return ageRate;
+    public double getPrice() {
+        return price;
     }
 
-    public void setAgeRate(String ageRate) {
-        this.ageRate = ageRate;
-    }
-
-    public double getInPrice() {
-        return inPrice;
-    }
-
-    public void setInPrice(double inPrice) {
-        this.inPrice = inPrice;
-    }
-
-    public double getOutPrice() {
-        return outPrice;
-    }
-
-    public void setOutPrice(double outPrice) {
-        this.outPrice = outPrice;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getStock() {
@@ -98,93 +69,29 @@ public class Book {
         this.stock = stock;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Publisher getPublisher() {
         return publisher;
     }
 
-    public void setPublisherId(Publisher publisher) {
+    public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
 
-    public String getSeries() {
-        return series;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setSeries(String series) {
-        this.series = series;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
-    public String getTranslator() {
-        return translator;
-    }
-
-    public void setTranslator(String translator) {
-        this.translator = translator;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getCoverType() {
-        return coverType;
-    }
-
-    public void setCoverType(String coverType) {
-        this.coverType = coverType;
-    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    public List<Author> getAuthor() {
-        return authors;
-    }
-
-    public void setAuthor(List<Author> author) {
-        this.authors = author;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
-    }
-
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
-
-    public void insertImages(String href) {
-        images.add(href);
-    }
-
-    public void insertAuthors(Author a) {
-        authors.add(a);
-    }
-    
     
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
  * @author phucnt
  */
 public interface DAO<T> {
-    Optional<T> get(int id);
+    T get(int id);
     
     List<T> getAll();
     
